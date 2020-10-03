@@ -1,0 +1,8 @@
+<form [formGroup]="sujetForm" (submit)="ajoutSujet(sujetForm.value)" novalidate autocomplete="off">
+    <div class="row">
+        <label for="" class="control-label">Sujet: </label>
+        <input type="text" name="sujet" formControlName="sujet" class="form-control col-md-3">
+        <em *ngIf="!Validatesujet() && sujetForm.controls.sujet.errors.pattern">sujet invalide</em>
+        <button type="submit" [disabled]="sujetForm.invalid" class="btn btn-info col-md-1">Poser</button>
+    </div>
+</form>

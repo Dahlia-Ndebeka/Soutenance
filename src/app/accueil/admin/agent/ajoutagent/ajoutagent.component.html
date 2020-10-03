@@ -1,0 +1,39 @@
+<form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutAgent(agentForm.value)" novalidate autocomplete="off">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="codeAg">Code :</label>
+                <input type="text" name="codeAg" class="form-control" formControlName="codeAg" id="codeAg" placeholder="Code">
+                <em *ngIf="!ValidatecodeAg() && agentForm.controls.codeAg.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatecodeAg() && agentForm.controls.codeAg.errors.pattern">Code invalide</em>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="nomUtilisateur">Nom utilisateur</label>
+                <input type="text" maxlength="10" name="nomUtilisateur" class="form-control" formControlName="nomUtilisateur" id="nomUtilisateur" placeholder="nom utilisateur">
+                <em *ngIf="!ValidatenomUtilisateur() && agentForm.controls.nomUtilisateur.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatenomUtilisateur() && agentForm.controls.nomUtilisateur.errors.pattern">nom invalide</em>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="motDePasse">Mot de passe</label>
+                <input type="password" maxlength="255" name="motDePasse" class="form-control" formControlName="motDePasse" id="motDePasse" placeholder="Mot de passe">
+                <em *ngIf="!ValidatemotDePasse() && agentForm.controls.motDePasse.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatemotDePasse() && agentForm.controls.motDePasse.errors.pattern">mot de passe invalide</em>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="confMotDePasse">Confirme mot de passe</label>
+                <input type="password" maxlength="255" name="confMotDePasse" class="form-control" formControlName="confMotDePasse" id="confMotDePasse" placeholder="Confirme le mot de passe">
+                <em *ngIf="!ValidateconfMotDePasse() && agentForm.controls.confMotDePasse.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidateconfMotDePasse() && agentForm.controls.confMotDePasse.errors.mustMatch">mot de passe invalide</em>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Ajouter</button>
+</form>

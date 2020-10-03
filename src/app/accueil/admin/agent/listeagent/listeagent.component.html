@@ -1,0 +1,25 @@
+<form class="forms-sample" [formGroup]="agentForm" (submit)="rechercherAgent(agentForm.value)" novalidate autocomplete="off">
+    <div class="form-group">
+        <label for="motCle">Mot cle : </label>
+        <input type="text" maxlength="10" name="motCle" class="form-control" formControlName="motCle" id="motCle" placeholder="Mot cle">
+        <button type="submit" class="btn btn-info">Rechercher</button>
+    </div>
+</form>
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Code agent</th>
+        <th>Nom utilisateur</th>
+        <th>Mot de passe</th>
+        <th class="text-center">Opération</th>
+    </tr>
+    <tr *ngFor="let ag of this.list">
+        <td>{{ag.codeAg}}</td>
+        <td>{{ag.nomUtilisateur}}</td>
+        <td>{{ag.motDePasse}}</td>
+        <td class="text-center">
+            <!-- <a href="javascript:void(0);" (click)="editerAgent(ag)" class="btn btn-sm btn-outline-warning">Editer</a> / -->
+            <a href="javascript:void(0);" routerLink="/editeragent/{{ag.idAg}}" class="btn btn-sm btn-outline-warning">Editer</a> /
+            <a href="javascript:void(0);" (click)="supprimerAgent(ag)" class="btn btn-sm btn-outline-danger">Supprimer</a>
+        </td>
+    </tr>
+</table>

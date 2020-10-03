@@ -1,0 +1,78 @@
+<div class="body container-fluid">
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="top_menu">
+                <div class="logo">Milane Parker Center</div>
+                <ul>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_container col-sm-10 col-sm-offset-2">
+            <h2 class="display-7 text-center">Modifier un apprenant</h2><br>
+            <div class="row">
+                <div class="item centre col-md-10">
+                    <form class="forms-sample" [formGroup]="apprenantForm" novalidate autocomplete="off">
+                        <div class="row">
+                            <input type="hidden" name="idAp" class="form-control" formControlName="idAp">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="codeAp">Code apprenant:</label>
+                                    <input type="text" name="codeAp" class="form-control" formControlName="codeAp" id="codeAp" placeholder="Code">
+                                    <em *ngIf="!ValidatecodeAp() && apprenantForm.controls.codeAp.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatecodeAp() && apprenantForm.controls.codeAp.errors.pattern">Code invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="nomAp">Nom apprenant</label>
+                                    <input type="text" maxlength="10" name="nomAp" class="form-control" formControlName="nomAp" id="nomAp" placeholder="nom apprenant">
+                                    <em *ngIf="!ValidatenomAp() && apprenantForm.controls.nomAp.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatenomAp() && apprenantForm.controls.nomAp.errors.pattern">nom invalide</em>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="motDePasseAp">Mot de passe</label>
+                                    <input type="password" maxlength="255" name="motDePasseAp" class="form-control" formControlName="motDePasseAp" id="motDePasseAp" placeholder="Mot de passe">
+                                    <em *ngIf="!ValidatemotDePasseAp() && apprenantForm.controls.motDePasseAp.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatemotDePasseAp() && apprenantForm.controls.motDePasseAp.errors.pattern">mot de passe invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="confMotDePasseAp">Confirme mot de passe</label>
+                                    <input type="password" maxlength="255" name="confMotDePasseAp" class="form-control" formControlName="confMotDePasseAp" id="confMotDePasseAp" placeholder="Confirme le mot de passe">
+                                    <em *ngIf="!ValidateconfMotDePasseAp() && apprenantForm.controls.confMotDePasseAp.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateconfMotDePasseAp() && apprenantForm.controls.confMotDePasseAp.errors.mustMatch">mot de passe invalide</em>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="idAg">Nom agent</label>
+                                    <input type="text" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
+                                    <em *ngIf="!ValidateidAg() && apprenantForm.controls.idAg.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateidAg() && apprenantForm.controls.idAg.errors.pattern">Champs invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <button type="submit" (click)="modifierApprenant()" class="btn btn-lg btn-block btn-primary" [disabled]="apprenantForm.invalid">Modifier</button>
+                            </div>
+                            <div class="col-lg-3">
+                                <button type="submit" (click)="annulerApprenant()" class="btn btn-lg btn-block btn-dark ">Annuler</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

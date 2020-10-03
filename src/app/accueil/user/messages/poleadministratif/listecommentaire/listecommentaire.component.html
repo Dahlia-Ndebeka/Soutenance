@@ -1,0 +1,14 @@
+<h4>Liste des commentaires</h4>
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Commentaire</th>
+        <th>Auteur</th>
+        <th>Commentaire</th>
+    </tr>
+    <tr *ngFor="let poleAd of this.list">
+        <th>{{poleAd.reponse}}
+            <span class="badge">{{poleAd.date}}</span>
+        </th>
+        <th>{{poleAd.auteur}}</th>
+    </tr>
+</table>

@@ -1,0 +1,22 @@
+<form class="forms-sample" [formGroup]="authForm" (submit)="auth(authForm.value)" novalidate autocomplete="off">
+    <!-- <h2 class="display-7 text-center">Authentification</h2> -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="nomUtilisateur">Nom utilisateur</label>
+                <input type="text" maxlength="10" name="nomUtilisateur" class="form-control" formControlName="nomUtilisateur" id="nomUtilisateur" placeholder="nom utilisateur">
+                <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.pattern">nom invalide</em>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="motDePasse">Mot de passe</label>
+                <input type="password" maxlength="255" name="motDePasse" class="form-control" formControlName="motDePasse" id="motDePasse" placeholder="Mot de passe">
+                <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.pattern">mot de passe invalide</em>
+            </div>
+        </div>
+    </div><br><br>
+    <button type="submit" class="btn btn-md btn-block btn-success" [disabled]="authForm.invalid">Connexion</button><br>
+</form>

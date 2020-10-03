@@ -1,0 +1,35 @@
+::-webkit-input-placeholder {
+    /*opera/chrome/Safari*/
+    color: #d8d7d7;
+}
+
+::-moz-placeholder {
+    /*Firefoxe 19+*/
+    color: #d8d7d7;
+}
+
+:-moz-placeholder {
+    /*Firefoxe 18-*/
+    color: #d8d7d7;
+}
+
+:-ms-input-placeholder {
+    /*IE 10+*/
+    color: #d8d7d7;
+}
+
+.btn-block {
+    color: #fff;
+}
+
+input.ng-touched.ng-invalid {
+    border-color: #dc3545;
+}
+
+em.validation-error {
+    color: #dc3545;
+}
+
+em {
+    color: #dc3545;
+}
