@@ -1,0 +1,27 @@
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Code module</th>
+        <th>contenu module</th>
+        <!-- <th>Titre du module</th>
+        <th>Contenu du module</th> -->
+        <th>Durée du module</th>
+        <th>Libellé formation</th>
+        <th class="text-center">Opération</th>
+    </tr>
+    <tr *ngFor="let module of this.list">
+        <td>{{module.codeModule}}</td>
+        <td>{{module.libelleModule}}</td>
+        <!-- <td>{{module.titreModule}}</td>
+        <td>{{module.contenuModule}} h</td> -->
+        <td>{{module.dureeModule}}</td>
+        <td>{{module.idFormation}}</td>
+        <td class="text-center">
+            <a href="javascript:void(0);" (click)="editerModule(module)" class="btn btn-sm btn-outline-warning">Editer</a> /
+            <a href="javascript:void(0);" (click)="supprimerModule(module)" class="btn btn-sm btn-outline-danger">Supprimer</a>
+        </td>
+        <!-- <td>
+            <button class="btn btn-success" (click)="onAllumer()">bloquer</button>
+            <button class="btn btn-danger" (click)="onEteindre()">Débloquer</button>
+        </td> -->
+    </tr>
+</table>

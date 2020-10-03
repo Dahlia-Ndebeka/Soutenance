@@ -1,0 +1,18 @@
+<h4>Liste des sujets</h4>
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Sujets</th>
+        <!-- <th>Date</th> -->
+        <!-- <th>Auteur</th> -->
+        <th>Commentaire</th>
+    </tr>
+    <tr *ngFor="let poleGes of this.list">
+        <th>{{poleGes.sujet}} moi
+            <span class="badge">{{poleGes.date}} moi</span>
+        </th>
+        <th>{{poleGes.auteur}}</th>
+        <th>
+            <a href="" (click)="voirCommentaire(poleGes)">Voir les commentaires</a>
+        </th>
+    </tr>
+</table>

@@ -1,0 +1,85 @@
+<div class="body container-fluid">
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="top_menu">
+                <div class="logo">Milane Parker Center</div>
+                <ul>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_container col-sm-10 col-sm-offset-2">
+            <h2 class="display-7 text-center">Modifier une formation</h2><br>
+            <div class="row">
+                <div class="item centre col-md-10">
+                    <form class="forms-sample" [formGroup]="formationForm" novalidate autocomplete="off">
+                        <div class="row">
+                            <input type="hidden" name="idFormation" class="form-control" formControlName="idFormation">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="codeFormation">Code de la formation :</label>
+                                    <input type="text" name="codeFormation" class="form-control" formControlName="codeFormation" id="codeFormation" placeholder="Code">
+                                    <em *ngIf="!ValidatecodeFormation() && formationForm.controls.codeFormation.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatecodeFormation() && formationForm.controls.codeFormation.errors.pattern">Code invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="libelleFormation">Libellé de la formation :</label>
+                                    <input type="text" maxlength="50" name="libelleFormation" class="form-control" formControlName="libelleFormation" id="libelleFormation" placeholder="libelle">
+                                    <em *ngIf="!ValidatelibelleFormation() && formationForm.controls.libelleFormation.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatelibelleFormation() && formationForm.controls.libelleFormation.errors.pattern">mot de passe invalide</em>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="dureeFormation">Durée de la formation :</label>
+                                    <input type="text" maxlength="50" name="dureeFormation" class="form-control" formControlName="dureeFormation" id="dureeFormation" placeholder="durée de la formation">
+                                    <em *ngIf="!ValidatedureeFormation() && formationForm.controls.dureeFormation.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatedureeFormation() && formationForm.controls.dureeFormation.errors.pattern">durée invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="idPolFor"> libelle pole de formation :</label>
+                                    <!-- <select hidden name="idPolFor" class="form-control" formControlName="idPolFor" id="idPolFor">
+                                        <option *ngFor="let pole of this.list" value="1014">{{pole.libellePolFor}}</option>
+                                    </select> -->
+                                    <input type="text" name="idPolFor" class="form-control" formControlName="idPolFor" id="idPolFor" placeholder="libellé">
+                                    <em *ngIf="!ValidateidPolFor() && formationForm.controls.idPolFor.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateidPolFor() && formationForm.controls.idPolFor.errors.pattern">libellé invalide</em>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="idAg">nom de l'agent :</label>
+                                    <input type="text" maxlength="50" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
+                                    <em *ngIf="!ValidateidAg() && formationForm.controls.idAg.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateidAg() && formationForm.controls.idAg.errors.pattern">nom invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <button type="submit" (click)="modifierFormation()" class="btn btn-lg btn-block btn-primary" [disabled]="formationForm.invalid">Modifier</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <button type="submit" (click)="annulerFormation()" class="btn btn-lg btn-block btn-dark">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

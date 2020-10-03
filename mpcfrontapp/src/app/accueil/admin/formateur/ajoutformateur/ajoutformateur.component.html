@@ -1,0 +1,49 @@
+<form class="forms-sample" [formGroup]="formateurForm" (submit)="ajoutFormateur(formateurForm.value)" novalidate autocomplete="off">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="codeFor">Code formateur:</label>
+                <input type="text" name="codeFor" class="form-control" formControlName="codeFor" id="codeFor" placeholder="Code">
+                <em *ngIf="!ValidatecodeFor() && formateurForm.controls.codeFor.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatecodeFor() && formateurForm.controls.codeFor.errors.pattern">Code invalide</em>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="nomFor">Nom du formateur</label>
+                <input type="text" maxlength="10" name="nomFor" class="form-control" formControlName="nomFor" id="nomFor" placeholder="nom formateur">
+                <em *ngIf="!ValidatenomFor() && formateurForm.controls.nomFor.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatenomFor() && formateurForm.controls.nomFor.errors.pattern">nom invalide</em>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="motDePasseFor">Mot de passe</label>
+                <input type="password" maxlength="255" name="motDePasseFor" class="form-control" formControlName="motDePasseFor" id="motDePasseFor" placeholder="Mot de passe">
+                <em *ngIf="!ValidatemotDePasseFor() && formateurForm.controls.motDePasseFor.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatemotDePasseFor() && formateurForm.controls.motDePasseFor.errors.pattern">mot de passe invalide</em>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="confMotDePasseFor">Confirme mot de passe</label>
+                <input type="password" maxlength="255" name="confMotDePasseFor" class="form-control" formControlName="confMotDePasseFor" id="confMotDePasseFor" placeholder="Confirme le mot de passe">
+                <em *ngIf="!ValidateconfMotDePasseFor() && formateurForm.controls.confMotDePasseFor.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidateconfMotDePasseFor() && formateurForm.controls.confMotDePasseFor.errors.mustMatch">mot de passe invalide</em>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="idAg">Nom agent</label>
+                <input type="text" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
+                <em *ngIf="!ValidateidAg() && formateurForm.controls.idAg.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidateidAg() && formateurForm.controls.idAg.errors.pattern">Champs invalide</em>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-block" [disabled]="formateurForm.invalid">Ajouter</button>
+</form>

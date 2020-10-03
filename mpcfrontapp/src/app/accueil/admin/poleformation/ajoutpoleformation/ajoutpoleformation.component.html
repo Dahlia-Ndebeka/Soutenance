@@ -1,0 +1,41 @@
+<form class="forms-sample" [formGroup]="poleForm" (submit)="ajoutPole(poleForm.value)" novalidate autocomplete="off">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="codePolFor">Code :</label>
+                <input type="text" name="codePolFor" class="form-control" formControlName="codePolFor" id="codePolFor" placeholder="Code">
+                <em *ngIf="!ValidatecodePolFor() && poleForm.controls.codePolFor.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatecodePolFor() && poleForm.controls.codePolFor.errors.pattern">Code invalide</em>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="libellePolFor">Libellé :</label>
+                <input type="text" maxlength="50" name="libellePolFor" class="form-control" formControlName="libellePolFor" id="libellePolFor" placeholder="libelle">
+                <em *ngIf="!ValidatelibellePolFor() && poleForm.controls.libellePolFor.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatelibellePolFor() && poleForm.controls.libellePolFor.errors.pattern">mot de passe invalide</em>
+            </div>
+        </div>
+        <!-- <div class="col-lg-6">
+            <div class="form-group">
+                <label for="idAg">nom de l'agent :</label> 
+                <select hidden name="idAg" class="form-control" formControlName="idAg" id="idAg">
+                    <option *ngFor="let pole of this.list" value="1014">{{pole.nomUtilisateur}}</option>
+                </select>
+                <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.pattern">Code invalide</em>
+            </div>
+        </div> -->
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="idAg">nom de l'agent :</label>
+                <input type="text" maxlength="50" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
+                <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.pattern">Code invalide</em>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-block" [disabled]="poleForm.invalid">Ajouter</button>
+</form>
