@@ -8,10 +8,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AgentService {
-
-  // private apiServer = 'http://localhost:54615/api';
-  // private apiServer = 'http://localhost:61835/api';
-  private apiServer = 'http://localhost:51511/api';
+  private apiServer = 'http://localhost/mpcApi/controleurs/agent';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -22,26 +19,26 @@ export class AgentService {
   constructor(private httpClient: HttpClient) { }
 
   postAgent(agent): Observable<Agent> {
-    return this.httpClient.post<Agent>(this.apiServer + '/agent/', JSON.stringify(agent), this.httpOptions)
+    return this.httpClient.post<Agent>(this.apiServer + '/ajoutagent.php/', JSON.stringify(agent), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
   getAgent(idAg): Observable<Agent> {
-    return this.httpClient.get<Agent>(this.apiServer + '/agent/' + idAg)
+    return this.httpClient.get<Agent>(this.apiServer + '/editeragent.php/' + idAg)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   refreshListe(): Observable<Agent[]> {
-    return this.httpClient.get<Agent[]>(this.apiServer + '/agent/')
+    return this.httpClient.get<Agent[]>(this.apiServer + '/listeagent.php/')
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
-  // Faire une recerce
+  // Faire une recherche
   onSearch(motCle): Observable<Agent> {
     return this.httpClient.get<Agent>(this.apiServer + '/agent/' + motCle)
     .pipe(
@@ -50,14 +47,14 @@ export class AgentService {
   }
 
 putAgent(agent): Observable<Agent> {
-    return this.httpClient.put<Agent>(this.apiServer + '/agent/'+ agent.idAg, JSON.stringify(agent), this.httpOptions)
+    return this.httpClient.put<Agent>(this.apiServer + '/modifieragent.php/'+ agent.idAg, JSON.stringify(agent), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   deleteAgent(idAg){
-    return this.httpClient.delete<Agent>(this.apiServer + '/agent/' + idAg, this.httpOptions)
+    return this.httpClient.delete<Agent>(this.apiServer + '/supprimeragent.php/' + idAg, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

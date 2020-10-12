@@ -9,8 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class ModuleformationService {
 
-  private apiServer = 'http://localhost:54615/api';
-  // private apiServer = 'http://localhost:61835/api';
+  private apiServer = 'http://localhost/mpcApi/controleurs/moduleformation';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

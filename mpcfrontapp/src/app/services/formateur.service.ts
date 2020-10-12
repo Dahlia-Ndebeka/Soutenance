@@ -9,8 +9,7 @@ import { Formateur } from '../modeles/formateur.model';
 })
 export class FormateurService {
 
-  // private apiServer = 'http://localhost:54615/api';
-  private apiServer = 'http://localhost:51511/api';
+  private apiServer = 'http://localhost/mpcApi/controleurs/formateur';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
