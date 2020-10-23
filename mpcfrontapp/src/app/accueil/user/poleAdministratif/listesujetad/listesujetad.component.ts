@@ -29,19 +29,7 @@ export class ListesujetadComponent implements OnInit {
   }
 
   voirCom(msg : Message) : void{
-    this.router.navigate(['voircommentaire/' + msg.idMessage]);
+    this.router.navigate(['ajoutcomad/' + msg.idMessage]);
   }
-
-  // supprimerMessage(msg : Message){
-  //   if(confirm('Attention ce champs va être supprimé')){
-  //     this.serviceMessage.deleteMessage(msg.idMessage).subscribe( u => {
-  //     this.serviceMessage.refreshListe().subscribe((data: Message[])=>{
-  //       this.list = data;
-  //     }) ;
-  //     this.toastr.warning('Suppression éffectué avec succes', 'Operation sur le sujet');
-  //     });
-  //   }
-  // }
-
 
 }

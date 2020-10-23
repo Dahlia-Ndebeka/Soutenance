@@ -60,6 +60,15 @@ import { PolegesComponent } from './accueil/user/poleGestion/poleges/poleges.com
 import { PoletechComponent } from './accueil/user/poleTechnologique/poletech/poletech.component';
 import { AjoutsujettechComponent } from './accueil/user/poleTechnologique/ajoutsujettech/ajoutsujettech.component';
 import { ListesujettechComponent } from './accueil/user/poleTechnologique/listesujettech/listesujettech.component';
+import { PoleadmincomComponent } from './accueil/user/commentaires/poleadmincom/poleadmincom.component';
+import { AjoutcomadComponent } from './accueil/user/commentaires/ajoutcomad/ajoutcomad.component';
+import { ListecomadComponent } from './accueil/user/commentaires/listecomad/listecomad.component';
+import { ListecomgesComponent } from './accueil/user/commentaires/listecomges/listecomges.component';
+import { AjoutcomgesComponent } from './accueil/user/commentaires/ajoutcomges/ajoutcomges.component';
+import { PolegescomComponent } from './accueil/user/commentaires/polegescom/polegescom.component';
+import { PoletechcomComponent } from './accueil/user/commentaires/poletechcom/poletechcom.component';
+import { AjoutcomtechComponent } from './accueil/user/commentaires/ajoutcomtech/ajoutcomtech.component';
+import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/listecomtech.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +117,16 @@ import { ListesujettechComponent } from './accueil/user/poleTechnologique/listes
     PolegesComponent,
     PoletechComponent,
     AjoutsujettechComponent,
-    ListesujettechComponent
+    ListesujettechComponent,
+    PoleadmincomComponent,
+    AjoutcomadComponent,
+    ListecomadComponent,
+    ListecomgesComponent,
+    AjoutcomgesComponent,
+    PolegescomComponent,
+    PoletechcomComponent,
+    AjoutcomtechComponent,
+    ListecomtechComponent
   ],
   imports: [
     BrowserModule,

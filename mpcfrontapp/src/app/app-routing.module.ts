@@ -42,6 +42,15 @@ import { ListesujetgesComponent } from './accueil/user/poleGestion/listesujetges
 import { PoletechComponent } from './accueil/user/poleTechnologique/poletech/poletech.component';
 import { AjoutsujettechComponent } from './accueil/user/poleTechnologique/ajoutsujettech/ajoutsujettech.component';
 import { ListesujettechComponent } from './accueil/user/poleTechnologique/listesujettech/listesujettech.component';
+import { PoleadmincomComponent } from './accueil/user/commentaires/poleadmincom/poleadmincom.component';
+import { AjoutcomadComponent } from './accueil/user/commentaires/ajoutcomad/ajoutcomad.component';
+import { ListecomadComponent } from './accueil/user/commentaires/listecomad/listecomad.component';
+import { PolegescomComponent } from './accueil/user/commentaires/polegescom/polegescom.component';
+import { AjoutcomgesComponent } from './accueil/user/commentaires/ajoutcomges/ajoutcomges.component';
+import { ListecomgesComponent } from './accueil/user/commentaires/listecomges/listecomges.component';
+import { PoletechcomComponent } from './accueil/user/commentaires/poletechcom/poletechcom.component';
+import { AjoutcomtechComponent } from './accueil/user/commentaires/ajoutcomtech/ajoutcomtech.component';
+import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/listecomtech.component';
 
 const routes: Routes = [
   {path:'', component:AccueilComponent, pathMatch:"prefix"},
@@ -86,6 +95,15 @@ const routes: Routes = [
   {path:'poletech', component:PoletechComponent},
   {path:'ajoutsujettech', component:AjoutsujettechComponent},
   {path:'listesujettech', component:ListesujettechComponent},
+  {path:'poleadmincom', component:PoleadmincomComponent},
+  {path:'ajoutcomad', component:AjoutcomadComponent},
+  {path:'listecomad', component:ListecomadComponent},
+  {path:'polegescom', component:PolegescomComponent},
+  {path:'ajoutcomges', component:AjoutcomgesComponent},
+  {path:'listecomges', component:ListecomgesComponent},
+  {path:'poletechcom', component:PoletechcomComponent},
+  {path:'ajoutcomtech', component:AjoutcomtechComponent},
+  {path:'listecomtech', component:ListecomtechComponent},
   {path:'no-fund', component:NoFundComponent},
   {path:'**', redirectTo :'/no-fund'}
 
