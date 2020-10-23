@@ -20,34 +20,34 @@ export class PoleformationService {
   constructor(private httpClient: HttpClient) { }
 
   postPole(poleformation): Observable<Poleformation> {
-    return this.httpClient.post<Poleformation>(this.apiServer + '/poleFormation', JSON.stringify(poleformation), this.httpOptions)
+    return this.httpClient.post<Poleformation>(this.apiServer + '/ajoutpoleformation.php', JSON.stringify(poleformation), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
   getPole(idPolFor): Observable<Poleformation> {
-    return this.httpClient.get<Poleformation>(this.apiServer + '/poleFormation/' + idPolFor)
+    return this.httpClient.get<Poleformation>(this.apiServer + '/editerpoleformation.php?idPolFor=' + idPolFor)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   refreshListe(): Observable<Poleformation[]> {
-    return this.httpClient.get<Poleformation[]>(this.apiServer + '/poleFormation/')
+    return this.httpClient.get<Poleformation[]>(this.apiServer + '/listepoleformation.php')
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
 putPole(poleformation): Observable<Poleformation> {
-    return this.httpClient.put<Poleformation>(this.apiServer + '/poleFormation/'+ poleformation.idPolFor, JSON.stringify(poleformation), this.httpOptions)
+    return this.httpClient.put<Poleformation>(this.apiServer + '/modifierpoleformation.php' + '?idPolFor=' + poleformation.idPolFor, JSON.stringify(poleformation), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   deletePole(idPolFor){
-    return this.httpClient.delete<Poleformation>(this.apiServer + '/poleFormation/' + idPolFor, this.httpOptions)
+    return this.httpClient.delete<Poleformation>(this.apiServer + '/supprimerpoleformation.php?idPolFor=' + idPolFor, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

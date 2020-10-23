@@ -39,9 +39,15 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="idAg">Nom agent</label>
-                <input type="text" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
+                <select name="idAg" class="form-control" formControlName="idAg" id="idAg">1
+                    <option *ngFor="let For of this.list" value="{{For.idAg}}">{{For.idAg}}</option>
+                </select>
                 <em *ngIf="!ValidateidAg() && formateurForm.controls.idAg.errors.required">Attention ce champs est vide</em>
                 <em *ngIf="!ValidateidAg() && formateurForm.controls.idAg.errors.pattern">Champs invalide</em>
+                <!-- <label for="idAg">Nom agent</label>
+                <input type="text" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
+                <em *ngIf="!ValidateidAg() && formateurForm.controls.idAg.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidateidAg() && formateurForm.controls.idAg.errors.pattern">Champs invalide</em> -->
             </div>
         </div>
     </div>

@@ -48,33 +48,18 @@ import { ModuleformationComponent } from './accueil/user/moduleformation/modulef
 import { ListemoduleformationComponent } from './accueil/user/moduleformation/listemoduleformation/listemoduleformation.component';
 import { EditermoduleformationComponent } from './accueil/user/moduleformation/editermoduleformation/editermoduleformation.component';
 import { MessagesComponent } from './accueil/user/messages/messages.component';
-import { PolegestionComponent } from './accueil/user/messages/polegestion/polegestion.component';
-import { PoleadministratifComponent } from './accueil/user/messages/poleadministratif/poleadministratif.component';
-import { PoletechnologiqueComponent } from './accueil/user/messages/poletechnologique/poletechnologique.component';
 import { ListeapprenantmoduleformationComponent } from './accueil/user/moduleformation/listeapprenantmoduleformation/listeapprenantmoduleformation.component';
-
-import { AjoutsujetComponent } from './accueil/user/messages/poleadministratif/ajoutsujet/ajoutsujet.component';
-import { ListesujetComponent } from './accueil/user/messages/poleadministratif/listesujet/listesujet.component';
-import { ListecommentaireComponent } from './accueil/user/messages/poleadministratif/listecommentaire/listecommentaire.component';
-import { AjoutcommentaireComponent } from './accueil/user/messages/poleadministratif/ajoutcommentaire/ajoutcommentaire.component';
-
-import { AjoutcommentairetechComponent } from './accueil/user/messages/poletechnologique/ajoutcommentairetech/ajoutcommentairetech.component';
-import { ListecommentairetechComponent } from './accueil/user/messages/poletechnologique/listecommentairetech/listecommentairetech.component';
-import { ListesujettechComponent } from './accueil/user/messages/poletechnologique/listesujettech/listesujettech.component';
-import { AjoutsujettechComponent } from './accueil/user/messages/poletechnologique/ajoutsujettech/ajoutsujettech.component';
-
-
-import { AjoutsujetgesComponent } from './accueil/user/messages/polegestion/ajoutsujetges/ajoutsujetges.component';
-import { ListesujetgesComponent } from './accueil/user/messages/polegestion/listesujetges/listesujetges.component';
-import { ListecommentairegesComponent } from './accueil/user/messages/polegestion/listecommentaireges/listecommentaireges.component';
-import { AjoutcommentairegesComponent } from './accueil/user/messages/polegestion/ajoutcommentaireges/ajoutcommentaireges.component';
-
-import { PoleadministratifService } from './services/discussion/poleadministratif.service';
-import { PolegestionsujetService } from './services/discussion/polegestionsujet.service';
-import { PolegestioncomService } from './services/discussion/polegestioncom.service';
-import { PoleadministratifcomService } from './services/discussion/poleadministratifcom.service';
-import { PoletechnologiquesujetService } from './services/discussion/poletechnologiquesujet.service';
-import { PoletechnologiquecomService } from './services/discussion/poletechnologiquecom.service';
+import { VoirmoduleformationComponent } from './accueil/user/moduleformation/voirmoduleformation/voirmoduleformation.component';
+import { NgxSimplePrintModule } from 'ngx-simple-print';
+import { AjoutsujetadComponent } from './accueil/user/poleAdministratif/ajoutsujetad/ajoutsujetad.component';
+import { PoleadminComponent } from './accueil/user/poleAdministratif/poleadmin/poleadmin.component';
+import { ListesujetadComponent } from './accueil/user/poleAdministratif/listesujetad/listesujetad.component';
+import { AjoutsujetgesComponent } from './accueil/user/poleGestion/ajoutsujetges/ajoutsujetges.component';
+import { ListesujetgesComponent } from './accueil/user/poleGestion/listesujetges/listesujetges.component';
+import { PolegesComponent } from './accueil/user/poleGestion/poleges/poleges.component';
+import { PoletechComponent } from './accueil/user/poleTechnologique/poletech/poletech.component';
+import { AjoutsujettechComponent } from './accueil/user/poleTechnologique/ajoutsujettech/ajoutsujettech.component';
+import { ListesujettechComponent } from './accueil/user/poleTechnologique/listesujettech/listesujettech.component';
 
 @NgModule({
   declarations: [
@@ -113,25 +98,17 @@ import { PoletechnologiquecomService } from './services/discussion/poletechnolog
     EditermoduleformationComponent,
     AjoutermoduleformationComponent,
     MessagesComponent,
-    PolegestionComponent,
-    PoleadministratifComponent,
-    PoletechnologiqueComponent,
     ListeapprenantmoduleformationComponent,
-
-    AjoutsujetComponent,
-    ListesujetComponent,
-    ListecommentaireComponent,
-    AjoutcommentaireComponent,
-
-    AjoutcommentairetechComponent,
-    ListecommentairetechComponent,
-    ListesujettechComponent,
-    AjoutsujettechComponent,
-
+    VoirmoduleformationComponent,
+    AjoutsujetadComponent,
+    PoleadminComponent,
+    ListesujetadComponent,
     AjoutsujetgesComponent,
     ListesujetgesComponent,
-    ListecommentairegesComponent,
-    AjoutcommentairegesComponent
+    PolegesComponent,
+    PoletechComponent,
+    AjoutsujettechComponent,
+    ListesujettechComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +117,9 @@ import { PoletechnologiquecomService } from './services/discussion/poletechnolog
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSimplePrintModule
+
   ],
   providers: [
     AgentService,
@@ -149,13 +128,7 @@ import { PoletechnologiquecomService } from './services/discussion/poletechnolog
     FormateurService,
     ApprenantService,
     ModuleformationService,
-    MessageService,
-    PoleadministratifService,
-    PoleadministratifcomService,
-    PolegestionsujetService,
-    PolegestioncomService,
-    PoletechnologiquesujetService,
-    PoletechnologiquecomService
+    MessageService
 
   ],
   bootstrap: [AppComponent]

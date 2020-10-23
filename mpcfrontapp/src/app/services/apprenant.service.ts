@@ -20,34 +20,34 @@ export class ApprenantService {
   constructor(private httpClient: HttpClient) { }
 
   postApprenant(apprenant): Observable<Apprenant> {
-    return this.httpClient.post<Apprenant>(this.apiServer + '/compteApprenant/', JSON.stringify(apprenant), this.httpOptions)
+    return this.httpClient.post<Apprenant>(this.apiServer + '/ajoutapprenant.php', JSON.stringify(apprenant), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
   getApprenant(idAp): Observable<Apprenant> {
-    return this.httpClient.get<Apprenant>(this.apiServer + '/compteApprenant/' + idAp)
+    return this.httpClient.get<Apprenant>(this.apiServer + '/editerapprenant.php?idAp=' + idAp)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   refreshListe(): Observable<Apprenant[]> {
-    return this.httpClient.get<Apprenant[]>(this.apiServer + '/compteApprenant/')
+    return this.httpClient.get<Apprenant[]>(this.apiServer + '/listeapprenant.php')
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   putApprenant(apprenant): Observable<Apprenant> {
-      return this.httpClient.put<Apprenant>(this.apiServer + '/compteApprenant/'+ apprenant.idAp, JSON.stringify(apprenant), this.httpOptions)
+      return this.httpClient.put<Apprenant>(this.apiServer + '/modifierapprenant.php?idAp=' + apprenant.idAp, JSON.stringify(apprenant), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
     }
 
   deleteApprenant(idAp){
-    return this.httpClient.delete<Apprenant>(this.apiServer + '/compteApprenant/' + idAp, this.httpOptions)
+    return this.httpClient.delete<Apprenant>(this.apiServer + '/supprimerapprenant.php?idAp=' + idAp, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

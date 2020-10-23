@@ -20,34 +20,34 @@ export class FormationService {
   constructor(private httpClient: HttpClient) { }
 
   postFormation(formation): Observable<Formation> {
-    return this.httpClient.post<Formation>(this.apiServer + '/formation', JSON.stringify(formation), this.httpOptions)
+    return this.httpClient.post<Formation>(this.apiServer + '/ajoutformation.php', JSON.stringify(formation), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
   getFormation(idFormation): Observable<Formation> {
-    return this.httpClient.get<Formation>(this.apiServer + '/formation/' + idFormation)
+    return this.httpClient.get<Formation>(this.apiServer + '/editerformation.php?idFormation=' + idFormation)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   refreshListe(): Observable<Formation[]> {
-    return this.httpClient.get<Formation[]>(this.apiServer + '/formation/')
+    return this.httpClient.get<Formation[]>(this.apiServer + '/listeformation.php')
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
 putFormation(formation): Observable<Formation> {
-    return this.httpClient.put<Formation>(this.apiServer + '/formation/'+ formation.idFormation, JSON.stringify(formation), this.httpOptions)
+    return this.httpClient.put<Formation>(this.apiServer + '/modifierformation.php' + '?idFormation=' + formation.idFormation, JSON.stringify(formation), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   deleteFormation(idFormation){
-    return this.httpClient.delete<Formation>(this.apiServer + '/formation/' + idFormation, this.httpOptions)
+    return this.httpClient.delete<Formation>(this.apiServer + '/supprimerformation.php?idFormation=' + idFormation, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

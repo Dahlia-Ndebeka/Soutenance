@@ -18,24 +18,24 @@
                 <em *ngIf="!ValidatelibellePolFor() && poleForm.controls.libellePolFor.errors.pattern">mot de passe invalide</em>
             </div>
         </div>
-        <!-- <div class="col-lg-6">
+        <div class="col-lg-6">
             <div class="form-group">
-                <label for="idAg">nom de l'agent :</label> 
-                <select hidden name="idAg" class="form-control" formControlName="idAg" id="idAg">
-                    <option *ngFor="let pole of this.list" value="1014">{{pole.nomUtilisateur}}</option>
+                <label for="idAg">nom de l'agent :</label>
+                <select name="idAg" class="form-control" formControlName="idAg" id="idAg">
+                    <option *ngFor="let pole of this.list" value="{{pole.idAg}}">{{pole.idAg}}</option>
                 </select>
                 <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.required">Attention ce champs est vide</em>
                 <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.pattern">Code invalide</em>
             </div>
-        </div> -->
-        <div class="col-lg-6">
+        </div>
+        <!-- <div class="col-lg-6">
             <div class="form-group">
                 <label for="idAg">nom de l'agent :</label>
                 <input type="text" maxlength="50" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
                 <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.required">Attention ce champs est vide</em>
                 <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.pattern">Code invalide</em>
             </div>
-        </div>
+        </div> -->
     </div>
     <button type="submit" class="btn btn-lg btn-block" [disabled]="poleForm.invalid">Ajouter</button>
 </form>

@@ -61,7 +61,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="titreModule">Titre du module</label>
-                                        <textarea name="titreModule" class="form-control" formControlName="titreModule" id="titreModule" placeholder="Contenu du module" cols="100" rows="8"></textarea>
+                                        <input type="text" maxlength="255" name="titreModule" class="form-control" formControlName="titreModule" id="titreModule" placeholder="titre module">
                                         <em *ngIf="!ValidatetitreModule() && moduleForm.controls.titreModule.errors.required">Attention ce champs est vide</em>
                                         <em *ngIf="!ValidatetitreModule() && moduleForm.controls.titreModule.errors.pattern">nom invalide</em>
                                     </div>

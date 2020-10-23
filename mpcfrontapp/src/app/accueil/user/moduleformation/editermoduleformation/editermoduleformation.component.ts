@@ -13,9 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditermoduleformationComponent implements OnInit {
 
   list: ModuleFormation[];
-
-  constructor(private toastr : ToastrService, private serviceModule : ModuleformationService, private routes : ActivatedRoute, private router : Router) { }
-
   data: any;
 
   moduleForm : FormGroup;
@@ -27,6 +24,8 @@ export class EditermoduleformationComponent implements OnInit {
   idFormation = new FormControl();
   idFor = new FormControl();
 
+  constructor(private toastr : ToastrService, private serviceModule : ModuleformationService, private routes : ActivatedRoute, private router : Router) { }
+  
   ngOnInit(): void {
 
     this.serviceModule.refreshListe().subscribe((data: ModuleFormation[])=>{
@@ -67,7 +66,7 @@ export class EditermoduleformationComponent implements OnInit {
     .subscribe(data =>{
         this.toastr.info('Module modifié avec succes', 'Operation sur les modules');
         this.moduleForm.reset();
-        this.router.navigate(['agent']);
+        this.router.navigate(['moduleformation']);
     },error =>{
         alert(error);
       }
@@ -76,7 +75,7 @@ export class EditermoduleformationComponent implements OnInit {
 
   annulerModule(){
     this.moduleForm.reset();
-    this.router.navigate(['editermoduleformation']);
+    this.router.navigate(['moduleformation']);
   }
 
   ValidatecodeModule(){

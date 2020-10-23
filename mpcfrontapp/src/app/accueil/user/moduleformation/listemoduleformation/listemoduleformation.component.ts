@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ModuleFormation } from 'src/app/modeles/module-formation.model';
 import { ToastrService } from 'ngx-toastr';
 import { ModuleformationService } from 'src/app/services/moduleformation.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-listemoduleformation',
@@ -11,7 +13,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListemoduleformationComponent implements OnInit {
 
-  // @Input() indexModule: number;
+  isModule = false;
+  isVoir = false;
+  moduleStatus: boolean;
+  voirStatus: boolean;
   
   list: ModuleFormation[];
 
@@ -43,12 +48,47 @@ export class ListemoduleformationComponent implements OnInit {
     }
   }
 
-  // onAllumer(){
-  //   this.serviceModule.debloqueModule(this.indexModule)
+  onbloquer() {
+    this.serviceModule.bloquer().then(
+      () => {
+        console.log('Sign in successful!');
+        this.moduleStatus = this.serviceModule.isModule;
+        this.voirStatus = this.serviceModule.isVoir;
+
+      }
+    );
+  }
+
+  ondebloquer() {
+    this.serviceModule.debloquer();
+        this.voirStatus = this.serviceModule.isVoir;
+        this.moduleStatus = this.serviceModule.isModule;
+  }
+
+  // public openPDF():void {
+  //   let DATA = this.htmlData.nativeElement;
+  //   let doc = new jsPDF('p','pt', 'a4');
+  //   doc.fromHTML(DATA.innerHTML,15,15);
+  //   doc.output('dataurlnewwindow');
   // }
 
-  // onEteindre(){
-  //   this.serviceModule.bloqueModule(this.indexModule)
+
+  // public downloadPDF():void {
+  //   let DATA = this.htmlData.nativeElement;
+  //   let doc = new jsPDF('p','pt', 'a4');
+
+  //   let handleElement = {
+  //     '#editor':function(element,renderer){
+  //       return true;
+  //     }
+  //   };
+  //   doc.fromHTML(DATA.innerHTML,15,15,{
+  //     'width': 200,
+  //     'elementHandlers': handleElement
+  //   });
+
+  //   doc.save('angular-demo.pdf');
   // }
+
 
 }

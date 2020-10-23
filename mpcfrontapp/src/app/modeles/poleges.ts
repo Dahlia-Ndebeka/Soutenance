@@ -1,0 +1,2 @@
+export class Poleges {
+}

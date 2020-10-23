@@ -31,10 +31,11 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="idPolFor"> libelle pole de formation :</label>
-                <!-- <select hidden name="idPolFor" class="form-control" formControlName="idPolFor" id="idPolFor">
-                    <option *ngFor="let pole of this.list" value="1014">{{pole.libellePolFor}}</option>
-                </select> -->
-                <input type="text" name="idPolFor" class="form-control" formControlName="idPolFor" id="idPolFor" placeholder="libellé">
+                <select name="idPolFor" class="form-control" formControlName="idPolFor" id="idPolFor">
+                    <option *ngFor="let formation of this.list" value="">pole de formation</option>
+                    <option *ngFor="let formation of this.list" value="{{formation.idPolFor}}">{{formation.idPolFor}}</option>
+                </select>
+                <!-- <input type="text" name="idPolFor" class="form-control" formControlName="idPolFor" id="idPolFor" placeholder="libellé"> -->
                 <em *ngIf="!ValidateidPolFor() && formationForm.controls.idPolFor.errors.required">Attention ce champs est vide</em>
                 <em *ngIf="!ValidateidPolFor() && formationForm.controls.idPolFor.errors.pattern">libellé invalide</em>
             </div>
@@ -42,7 +43,10 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="idAg">nom de l'agent :</label>
-                <input type="text" maxlength="50" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
+                <select name="idAg" class="form-control" formControlName="idAg" id="idAg">
+                    <option *ngFor="let formation of this.list" value="{{formation.idAg}}">{{formation.idAg}}</option>
+                </select>
+                <!-- <input type="text" maxlength="50" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder=""> -->
                 <em *ngIf="!ValidateidAg() && formationForm.controls.idAg.errors.required">Attention ce champs est vide</em>
                 <em *ngIf="!ValidateidAg() && formationForm.controls.idAg.errors.pattern">nom invalide</em>
             </div>

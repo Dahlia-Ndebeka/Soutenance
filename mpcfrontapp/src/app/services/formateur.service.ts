@@ -20,34 +20,34 @@ export class FormateurService {
   constructor(private httpClient: HttpClient) { }
 
   postFormateur(formateur): Observable<Formateur> {
-    return this.httpClient.post<Formateur>(this.apiServer + '/compteFormateur/', JSON.stringify(formateur), this.httpOptions)
+    return this.httpClient.post<Formateur>(this.apiServer + '/ajoutformateur.php', JSON.stringify(formateur), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
   getFormateur(idFor): Observable<Formateur> {
-    return this.httpClient.get<Formateur>(this.apiServer + '/compteFormateur/' + idFor)
+    return this.httpClient.get<Formateur>(this.apiServer + '/editerformateur.php?idFor=' + idFor)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   refreshListe(): Observable<Formateur[]> {
-    return this.httpClient.get<Formateur[]>(this.apiServer + '/compteFormateur/')
+    return this.httpClient.get<Formateur[]>(this.apiServer + '/listeformateur.php')
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   putFormateur(formateur): Observable<Formateur> {
-      return this.httpClient.put<Formateur>(this.apiServer + '/compteFormateur/'+ formateur.idFor, JSON.stringify(formateur), this.httpOptions)
+      return this.httpClient.put<Formateur>(this.apiServer + '/modifierformateur.php' + '?idFor=' + formateur.idFor, JSON.stringify(formateur), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
     }
 
   deleteFormateur(idFor){
-    return this.httpClient.delete<Formateur>(this.apiServer + '/compteFormateur/' + idFor, this.httpOptions)
+    return this.httpClient.delete<Formateur>(this.apiServer + '/supprimerformateur.php?idFor=' + idFor, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

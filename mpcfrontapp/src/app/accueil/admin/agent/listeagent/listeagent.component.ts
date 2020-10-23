@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ListeagentComponent implements OnInit {
   
+  // list: any;
   list: Agent[];
 
     agentForm = new FormGroup({
@@ -28,21 +29,8 @@ export class ListeagentComponent implements OnInit {
   ngOnInit(): void {
     this.serviceAgent.refreshListe().subscribe((data: Agent[])=>{
       this.list = data;
-    })  
+    })
 
-    // this.motCle = new FormControl('', [Validators.required]);
-  }
-
-  // editerAgent(ag : Agent) : void{
-  //   console.log(ag.idAg)
-  //   //this.router.navigate(['editeragent/' + ag.idAg]);
-  //   this.router.navigateByUrl('accueil');
-  // }
-
-  rechercherAgent(motCle){
-    console.log(motCle)
-    //this.router.navigate(['editeragent/' + ag.idAg]);
-    //this.router.navigateByUrl('accueil');
   }
 
   supprimerAgent(ag : Agent){
@@ -55,5 +43,6 @@ export class ListeagentComponent implements OnInit {
       });
     }
   }
+
 
 }

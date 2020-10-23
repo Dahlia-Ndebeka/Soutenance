@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AgentService {
   private apiServer = 'http://localhost/mpcApi/controleurs/agent';
+  // baseUrl  = 'http://localhost:/mpcApi/controleurs/agent';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -16,45 +17,61 @@ export class AgentService {
   }
   list: Agent[];
 
+  // constructor(private httpClient: HttpClient) { }
   constructor(private httpClient: HttpClient) { }
 
+  // refreshListe():Observable<Agent>{
+  //   return this.http.get<Agent>(this.baseUrl + '/listeagent.php');
+  // }
+
+  // postAgent(agent : Agent):Observable<Agent>{
+  //   return this.http.post<Agent>(this.baseUrl + '/ajoutagent.php', agent);
+  // }
+
+  // deleteAgent(idAg : number):Observable<Agent>{
+  //   return this.http.get<Agent>(this.baseUrl + '/supprimeragent.php?idAg=' +  idAg);
+  // }
+
+  // getAgent(idAg : number):Observable<Agent>{
+  //   return this.http.get<Agent>(this.baseUrl + '/editeragent.php?idAg=' +  idAg);
+  // }
+
+  // putAgent(agent : Agent){
+  //   return this.http.post<Agent>(this.baseUrl + '/modifieragent.php', agent);
+  // }
+
+
+
+
   postAgent(agent): Observable<Agent> {
-    return this.httpClient.post<Agent>(this.apiServer + '/ajoutagent.php/', JSON.stringify(agent), this.httpOptions)
+    return this.httpClient.post<Agent>(this.apiServer + '/ajoutagent.php', JSON.stringify(agent), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
   getAgent(idAg): Observable<Agent> {
-    return this.httpClient.get<Agent>(this.apiServer + '/editeragent.php/' + idAg)
+    return this.httpClient.get<Agent>(this.apiServer + '/editeragent.php?idAg=' + idAg)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   refreshListe(): Observable<Agent[]> {
-    return this.httpClient.get<Agent[]>(this.apiServer + '/listeagent.php/')
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
-
-  // Faire une recherche
-  onSearch(motCle): Observable<Agent> {
-    return this.httpClient.get<Agent>(this.apiServer + '/agent/' + motCle)
+    return this.httpClient.get<Agent[]>(this.apiServer + '/listeagent.php')
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
 putAgent(agent): Observable<Agent> {
-    return this.httpClient.put<Agent>(this.apiServer + '/modifieragent.php/'+ agent.idAg, JSON.stringify(agent), this.httpOptions)
+    return this.httpClient.put<Agent>(this.apiServer + '/modifieragent.php' + '?idAg=' + agent.idAg, JSON.stringify(agent), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   deleteAgent(idAg){
-    return this.httpClient.delete<Agent>(this.apiServer + '/supprimeragent.php/' + idAg, this.httpOptions)
+    return this.httpClient.delete<Agent>(this.apiServer + '/supprimeragent.php?idAg=' + idAg, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -72,51 +89,3 @@ putAgent(agent): Observable<Agent> {
      return throwError(errorMessage);
   }
 }
-
-
-
-
-
-
-
-
-
-
-    //   //Declaration des variables
-
-    //   readonly rootURL = 'http://localhost:54615/api';
-
-    //   list : Agent[];
-    //   model : Agent
-    //   formData : Agent;
-    
-    //   constructor(private http : HttpClient) { }
-    
-    //   /** Les differentes methodes **/
-    
-    //   //Insertion des données dans la table
-    //   postAgent(Agent){
-    //     return this.http.post(this.rootURL + '/agent', Agent);
-    //   }
-    
-    //   //Affichage des données
-    //   refreshListe(){
-    //     return this.http.get(this.rootURL + '/agent')
-    //           .toPromise().then(data => this.list = data as Agent[]);
-    //   }
-
-    //   //Modifier un agent
-    //   putAgent(Agent){
-    //     return this.http.put(this.rootURL + '/agent/' + Agent.idAg, Agent);
-    //   }
-
-    //   getAgent(id : number){
-    //     return this.http.get(this.rootURL + '/agent/' + id)
-    //   }
-    
-    //   //Supprimer un agent
-    //   deleteAgent(id : number){
-    //     return this.http.delete(this.rootURL + '/agent/' + id);
-    //   }
-
-
