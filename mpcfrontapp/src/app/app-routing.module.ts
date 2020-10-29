@@ -96,7 +96,7 @@ const routes: Routes = [
   {path:'ajoutsujettech', component:AjoutsujettechComponent},
   {path:'listesujettech', component:ListesujettechComponent},
   {path:'poleadmincom', component:PoleadmincomComponent},
-  {path:'ajoutcomad', component:AjoutcomadComponent},
+  {path:'ajoutcomad/:idMessage', component:AjoutcomadComponent},
   {path:'listecomad', component:ListecomadComponent},
   {path:'polegescom', component:PolegescomComponent},
   {path:'ajoutcomges', component:AjoutcomgesComponent},

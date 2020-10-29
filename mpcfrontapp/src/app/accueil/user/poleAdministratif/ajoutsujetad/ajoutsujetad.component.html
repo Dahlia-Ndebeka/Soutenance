@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="sujetMessage">sujetMessage :</label>
+                <label for="sujetMessage">Sujet :</label>
                 <input type="text" name="sujetMessage" class="form-control" formControlName="sujetMessage" id="sujetMessage" placeholder="Code">
                 <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.required">Attention ce champs est vide</em>
                 <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.pattern">Code invalide</em>

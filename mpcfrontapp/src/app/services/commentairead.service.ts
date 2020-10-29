@@ -9,7 +9,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class CommentaireadService {
 
-  private apiServer = 'http://localhost/mpcApi/controleurs/commentaire/comAd';
+  private apiServer = 'http://localhost/mpcApi/controleurs/commentaire/comAd'; 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -19,14 +19,14 @@ export class CommentaireadService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postCommentairead(com): Observable<Commentairead> {
+  postCommentairecomAd(com): Observable<Commentairead> {
     return this.httpClient.post<Commentairead>(this.apiServer + '/ajoutcomAd.php', JSON.stringify(com), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }  
-  getCommentairead(idCom): Observable<Commentairead> {
-    return this.httpClient.get<Commentairead>(this.apiServer + '/editercomAd.php?idCom=' + idCom)
+  getCommentairead(idComAdmin): Observable<Commentairead> {
+    return this.httpClient.get<Commentairead>(this.apiServer + '/editercomAd.php?idComAdmin=' + idComAdmin)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -39,15 +39,22 @@ export class CommentaireadService {
     )
   }
 
-putMessage(com): Observable<Commentairead> {
-    return this.httpClient.put<Commentairead>(this.apiServer + '/modifiercomAd.php' + '?idCom=' + com.idCom, JSON.stringify(com), this.httpOptions)
+  refreshListeCom(): Observable<Commentairead[]> {
+    return this.httpClient.get<Commentairead[]>(this.apiServer + '/listecomAd.php')
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
-  deleteMessage(idCom){
-    return this.httpClient.delete<Commentairead>(this.apiServer + '/supprimercomAd.php?idCom=' + idCom, this.httpOptions)
+  putMessage(com): Observable<Commentairead> {
+    return this.httpClient.put<Commentairead>(this.apiServer + '/modifiercomAd.php' + '?idComAdmin=' + com.idComAdmin, JSON.stringify(com), this.httpOptions)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  deleteMessage(idComAdmin){
+    return this.httpClient.delete<Commentairead>(this.apiServer + '/supprimercomAd.php?idComAdmin=' + idComAdmin, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

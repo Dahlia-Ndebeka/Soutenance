@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,13 +10,28 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
 
-  constructor( private toastr : ToastrService) {  }
-
   data: any;
+  loginbtn:boolean;
+  logoutbtn:boolean;
 
-    authForm : FormGroup;
-    nomUtilisateur = new FormControl();
-    motDePasse = new FormControl();
+  constructor( private toastr : ToastrService, private dataService : AuthService) { 
+
+    dataService.getLoggedInName.subscribe(name => this.changeName(name));
+
+    if(this.dataService.isLoggedIn()){
+      console.log("loggedin");
+      this.loginbtn=false;
+      this.logoutbtn=true
+    }else{
+      this.loginbtn=true;
+      this.logoutbtn=false
+    }
+
+  }
+
+  authForm : FormGroup;
+  nomUtilisateur = new FormControl();
+  motDePasse = new FormControl();
 
   ngOnInit(): void {
 
@@ -29,11 +45,14 @@ export class AuthComponent implements OnInit {
 
   }
 
-  auth(obj : any){
-    // obj.id = 0; 
-    // this.serviceAgent.postAgent(obj).subscribe((data): any => {
-    //   this.toastr.success('Agent ajouté avec succes', 'Operation sur l\'agent');
-    // })
+  private changeName(name: boolean): void {
+  this.logoutbtn = name;
+  this.loginbtn = !name;
+  }
+  logout()
+  {
+  this.dataService.deleteToken();
+  window.location.href = window.location.href;
   }
 
   ValidatenomUtilisateur(){

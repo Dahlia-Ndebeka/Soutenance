@@ -49,10 +49,10 @@ export class AjoutsujetadComponent implements OnInit {
   ajoutSujet(obj : any){
     obj.id = 0; 
     this.serviceSujet.postMessage(obj).subscribe((data): any => {
-      this.toastr.success('Agent ajouté avec succes', 'Operation sur l\'agent');
-      // this.serviceSujet.refreshListe().subscribe((data: Message[])=>{
-      //   this.list = data;
-      // })
+    this.toastr.success('Sujet ajouté avec succes', 'Operation sur les sujets');
+      this.serviceSujet.refreshListe().subscribe((data: Message[])=>{
+        this.list = data;
+      })
       this.agentForm.reset();
     })
   }

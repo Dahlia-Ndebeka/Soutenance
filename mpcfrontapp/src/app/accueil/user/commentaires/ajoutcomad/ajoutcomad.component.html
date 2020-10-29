@@ -1,46 +1,114 @@
-<form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutSujet(agentForm.value)" novalidate autocomplete="off">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="sujetMessage">sujetMessage :</label>
-                <input type="text" name="sujetMessage" class="form-control" formControlName="sujetMessage" id="sujetMessage" placeholder="Code">
-                <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.pattern">Code invalide</em>
+<div class="body">
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="hamburger">
+                <img src="../../assets/img/logo1.png" alt="" width="90" height="80">
+            </div>
+            <div class="top_menu">
+                <div class="logo">Milane Parker Center</div>
+                <div class="lien">
+                    <ul>
+                        <li routerLinkActive="active"><a routerLink="/user">Accueil</a></li>
+                        <li routerLinkActive="active"><a routerLink="/listeapprenantmoduleformation">Liste des modules</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poleadmin">Pôle Administratif</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poleges">Pôle de Gestion</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poletech">Pôle Technologique</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poleadmin">Liste des sujets</a></li>
+                    </ul>
+                </div>
+                <ul>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                </ul>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="dateMessage">Date d'envois</label>
-                <input type="date" maxlength="10" name="dateMessage" class="form-control" formControlName="dateMessage" id="dateMessage " placeholder="date message">
-                <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.pattern">nom invalide</em>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="polFor">Pole de formation</label>
-                <input type="polFor" maxlength="255" name="polFor" class="form-control" formControlName="polFor" id="polFor" placeholder="pole de formation">
-                <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.pattern">mot de passe invalide</em>
-            </div>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Ajouter</button>
-</form><br><br>
+        <div class="main_container col-sm-10 col-sm-offset-2">
+            <div class="row center">
+                <div class="item centre2 col-md-12">
+                    <h3 class="display-6">Ajouter un nouveau sujet</h3>
+                    <form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutCom(agentForm.value)" novalidate autocomplete="off">
+                        <div class="row">
+                            <input type="hidden" name="idMessage" class="form-control" formControlName="idMessage">
+                            <!-- <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="reponse">Sujet : </label>
+                                    <input type="text" name="sujetMessage" class="form-control" formControlName="sujetMessage" id="reponse" />
+                                </div>
+                            </div> -->
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="reponse">Votre commentaire : </label>
+                                    <textarea name="reponse" class="form-control" formControlName="reponse" id="reponse" placeholder="votre commentaire" cols="10" rows="5"></textarea>
+                                    <em *ngIf="!Validatereponse() && agentForm.controls.reponse.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!Validatereponse() && agentForm.controls.reponse.errors.pattern">Code invalide</em>
+                                    <label for="dateRep">Date d'envois</label>
+                                    <input type="date" maxlength="10" name="dateRep" class="form-control" formControlName="dateRep" id="dateRep" placeholder="date commentaire">
+                                    <em *ngIf="!ValidatedateRep() && agentForm.controls.dateRep.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatedateRep() && agentForm.controls.dateRep.errors.pattern">nom invalide</em>
+                                </div>
+                                <div class="form-group">
 
-<table class="table table-striped">
-    <tr class="bg-info text-white">
-        <th>Sujets</th>
-        <th>Date de publication</th>
-        <th class="text-center">Opération</th>
-    </tr>
-    <tr *ngFor="let msg of this.list">
-        <td>{{msg.sujetMessage}}</td>
-        <td>{{msg.dateMessage}}</td>
-        <td class="text-center">
-            <a href="javascript:void(0);" (click)="voirCom(msg)" class="btn btn-sm btn-outline-warning">Voir commentaire</a>
-        </td>
-    </tr>
-</table>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Commenter</button>
+                    </form>
+                </div>
+                <div class="item centre2 col-md-12">
+                    <h3 class="display-8">Liste des Commentaires</h3>
+                    <table class="table table-striped">
+                        <tr class="bg-info text-white">
+                            <th>Commentaires</th>
+                            <th>Date de publication</th>
+                        </tr>
+                        <tr *ngFor="let com of this.list">
+                            <td>{{com.reponse}}</td>
+                            <td>{{com.daterep}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div>
+            <hr>
+            <div class="info">
+                <p>Centre de Formation Informatique</p>
+                <p>Une idee en action</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br><br>
+
+    <!--  -->

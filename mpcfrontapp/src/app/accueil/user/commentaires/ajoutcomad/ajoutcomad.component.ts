@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Commentairead } from 'src/app/modeles/commentairead';
 import { CommentaireadService } from 'src/app/services/commentairead.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-ajoutcomad',
@@ -16,45 +17,48 @@ export class AjoutcomadComponent implements OnInit {
 
   constructor(
     private serviceCom : CommentaireadService, 
+    private serviceMessage : MessageService , 
     private toastr : ToastrService, 
     private formBuilder : FormBuilder,
     private route: ActivatedRoute,
     private router: Router) {  }
 
   data: any;
-  
-  //   agentForm = new FormGroup({
-  //     sujetMessage : new FormControl,
-  //     dateMessage : new FormControl,
-  //     PolFor : new FormControl
-  //   })
 
     agentForm : FormGroup;
-    sujetMessage = new FormControl();
-    dateMessage  = new FormControl();
-    polFor = new FormControl();
+    idMessage = new FormControl();
+    reponse = new FormControl();
+    dateRep  = new FormControl();
+    // sujetMessage = new FormControl();
 
   ngOnInit(): void {
+
+    this.idMessage = new FormControl('', [Validators.required]);
+    this.reponse = new FormControl('', [Validators.required]);
+    this.dateRep = new FormControl('', [Validators.required]);
+
+    this.agentForm = new FormGroup({
+      idMessage : this.idMessage,
+      reponse : this.reponse,
+      dateRep : this.dateRep
+    });
+
+    const routeParams = this.route.snapshot.params;
+    console.log(routeParams.idMessage);
+
+    this.serviceMessage.getMessage(routeParams.idMessage).subscribe((data : any) =>{
+      this.agentForm.patchValue(data);
+    })
 
     this.serviceCom.refreshListe().subscribe((data: Commentairead[])=>{
       this.list = data;
     })
 
-    this.sujetMessage = new FormControl('', [Validators.required]);
-    this.dateMessage = new FormControl('', [Validators.required]);
-    this.polFor = new FormControl('', [Validators.required]);
-
-    this.agentForm = new FormGroup({
-        sujetMessage : this.sujetMessage,
-        dateMessage : this.dateMessage,
-        polFor : this.polFor
-    });
-
   }
 
-  ajoutSujet(obj : any){
+  ajoutCom(obj : any){
     obj.id = 0; 
-    this.serviceCom.postCommentairead(obj).subscribe((data): any => {
+    this.serviceCom.postCommentairecomAd(obj).subscribe((data): any => {
       this.toastr.success('Commentaire ajouté avec succes', 'Operation sur les commentaires');
       this.serviceCom.refreshListe().subscribe((data: Commentairead[])=>{
         this.list = data;
@@ -63,20 +67,11 @@ export class AjoutcomadComponent implements OnInit {
     })
   }
 
-  voirCom(com : Commentairead) : void{
-    this.router.navigate(['voircommentaire/' + com.idCom]);
+  Validatereponse(){
+    return this.reponse.valid || this.reponse.untouched;
   }
 
-  ValidatesujetMessage(){
-    return this.sujetMessage.valid || this.sujetMessage.untouched;
+  ValidatedateRep(){
+    return this.dateRep.valid || this.dateRep.untouched;
   }
-
-  ValidatedateMessage(){
-    return this.dateMessage.valid || this.dateMessage.untouched;
-  }
-
-  ValidatepolFor(){
-    return this.polFor.valid || this.polFor.untouched;
-  }
-
 }
