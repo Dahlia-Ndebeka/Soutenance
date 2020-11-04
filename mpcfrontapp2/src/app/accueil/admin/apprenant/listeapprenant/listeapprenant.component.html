@@ -1,0 +1,19 @@
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Code apprenant</th>
+        <th>Nom apprenant</th>
+        <!-- <th>Nom agent</th> -->
+        <th>Mot de passe</th>
+        <th class="text-center">Opération</th>
+    </tr>
+    <tr *ngFor="let ap of this.list">
+        <td>{{ap.codeAp}}</td>
+        <td>{{ap.nomAp}}</td>
+        <td>{{ap.nomUtilisateur}}</td>
+        <!-- <td>{{ap.motDePasseAp}}</td> -->
+        <td class="text-center">
+            <a href="javascript:void(0);" (click)="editerApprenant(ap)" class="btn btn-sm btn-outline-warning">Editer</a> /
+            <a href="javascript:void(0);" (click)="supprimerApprenant(ap)" class="btn btn-sm btn-outline-danger">Supprimer</a>
+        </td>
+    </tr>
+</table>

@@ -8,8 +8,8 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AgentService {
-  private apiServer = 'http://localhost/mpcApi/controleurs/agent';
-  // baseUrl  = 'http://localhost:/mpcApi/controleurs/agent';
+  private apiServer = 'http://localhost/mpcApi/controleurs/utilisateur';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -17,38 +17,15 @@ export class AgentService {
   }
   list: Agent[];
 
-  // constructor(private httpClient: HttpClient) { }
   constructor(private httpClient: HttpClient) { }
-
-  // refreshListe():Observable<Agent>{
-  //   return this.http.get<Agent>(this.baseUrl + '/listeagent.php');
-  // }
-
-  // postAgent(agent : Agent):Observable<Agent>{
-  //   return this.http.post<Agent>(this.baseUrl + '/ajoutagent.php', agent);
-  // }
-
-  // deleteAgent(idAg : number):Observable<Agent>{
-  //   return this.http.get<Agent>(this.baseUrl + '/supprimeragent.php?idAg=' +  idAg);
-  // }
-
-  // getAgent(idAg : number):Observable<Agent>{
-  //   return this.http.get<Agent>(this.baseUrl + '/editeragent.php?idAg=' +  idAg);
-  // }
-
-  // putAgent(agent : Agent){
-  //   return this.http.post<Agent>(this.baseUrl + '/modifieragent.php', agent);
-  // }
-
-
-
 
   postAgent(agent): Observable<Agent> {
     return this.httpClient.post<Agent>(this.apiServer + '/ajoutagent.php', JSON.stringify(agent), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
-  }  
+  }
+    
   getAgent(idAg): Observable<Agent> {
     return this.httpClient.get<Agent>(this.apiServer + '/editeragent.php?idAg=' + idAg)
     .pipe(

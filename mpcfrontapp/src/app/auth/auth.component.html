@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
     <a class="navbar-brand" routerLink="home" routerLinkActive="active">Angular RegisterAndLogin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
     
@@ -24,18 +24,18 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav> -->
 
-<div class="container">
+<!-- <div class="container">
     <div class="card card-login mx-auto mt150">
         <div class="card-header titre">Authentification</div>
         <div class="card-body">
             <form [formGroup]="authForm" (submit)="auth(authForm.value)" autocomplete="off">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="text" name="nomUtilisateur" class="form-control" formControlName="nomUtilisateur" id="nomUtilisateur" placeholder="nom utilisateur">
-                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.required">Attention ce champs est vide</em>
-                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.pattern">nom invalide</em>
+                        <input type="text" name="codeUtilisateur" class="form-control" formControlName="codeUtilisateur" id="codeUtilisateur" placeholder="nom utilisateur">
+                        <em *ngIf="!ValidatecodeUtilisateur() && authForm.controls.codeUtilisateur.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatecodeUtilisateur() && authForm.controls.codeUtilisateur.errors.pattern">nom invalide</em>
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,4 +49,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->

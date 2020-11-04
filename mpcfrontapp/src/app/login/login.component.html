@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="card card-login mx-auto mt150">
+        <div class="card-header titre">Authentification</div>
+        <div class="card-body">
+            <!-- <h3 *ngIf='message'>
+                {{message}}
+            </h3> -->
+            <form [formGroup]="authForm" (submit)="auth(authForm.value)" autocomplete="off">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="codeCompte" class="form-control" formControlName="codeCompte" id="codeCompte" placeholder="nom utilisateur" autocomplete="off">
+                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.pattern">nom invalide</em>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="password" name="motDePasse" class="form-control" formControlName="motDePasse" id="motDePasse" placeholder="Mot de passe" autocomplete="off">
+                        <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.pattern">mot de passe invalide</em>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-md btn-block btn-info" [disabled]="authForm.invalid">Connexion</button><br>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- </div><div class="container">
+    <div class="card card-login mx-auto mt150">
+        <div class="card-header titre">Authentification</div>
+        <div class="card-body">
+            <form [formGroup]="authForm" (submit)="auth(authForm.value)" autocomplete="off">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="codeCompte" class="form-control" formControlName="codeCompte" id="codeCompte" placeholder="nom utilisateur">
+                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.pattern">nom invalide</em>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="password" name="motDePasse" class="form-control" formControlName="motDePasse" id="motDePasse" placeholder="Mot de passe">
+                        <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.pattern">mot de passe invalide</em>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-md btn-block btn-info" [disabled]="authForm.invalid">Connexion</button><br>
+            </form>
+        </div>
+    </div>
+</div> -->

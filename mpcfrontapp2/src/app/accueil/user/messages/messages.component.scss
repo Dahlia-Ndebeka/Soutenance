@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.body {
+    background: #e1ecf2;
+}
+
+.wrapper {
+    margin: 10px;
+}
+
+.wrapper .top_navbar {
+    width: 100%;
+    height: 11%;
+    display: flex;
+    position: fixed;
+    top: 8px;
+}
+
+.wrapper .top_navbar .hamburger {
+    width: 8%;
+    height: 100%;
+    background: #e1ecf2;
+    border-top-left-radius: 20px;
+    cursor: pointer;
+}
+
+.wrapper .top_navbar .hamburger div {
+    width: 35px;
+    height: 4px;
+    background: #92a6e2;
+    margin: 5px 0px;
+    border-radius: 5px;
+}
+
+.wrapper .top_navbar .top_menu {
+    /*width:calc(100%-70px);*/
+    width: 97%;
+    background: #fff;
+    height: 100%;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .top_navbar .top_menu .logo {
+    color: #2e4ead;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.wrapper .top_navbar .top_menu ul {
+    display: flex;
+}
+
+// .wrapper .top_navbar .top_menu ul li a {
+//     display: block;
+//     margin: 0px 10px;
+//     line-height: 35px;
+//     width: 35px;
+//     height: 35px;
+//     border: 1px solid #2e4ead;
+//     text-align: center;
+//     border-radius: 50%;
+// }
+.wrapper .top_navbar .top_menu .lien ul li a {
+    display: block;
+    margin: 0px 10px;
+    text-align: center;
+}
+
+.wrapper .top_navbar .top_menu ul li a:hover {
+    background: #2e4ead;
+    color: #fff;
+    text-decoration: none;
+}
+
+.wrapper .main_container {
+    clear: both;
+    margin-top: 5%;
+    padding: 0.25%;
+}
+
+.wrapper .main_container .item {
+    background: #fff;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 2%;
+    padding: 1%;
+    font-size: 15px;
+}
+
+.wrapper .main_container .centre {
+    margin: auto
+}
+
+hr {
+    width: 80%;
+    color: blue;
+    font-size: 800;
+    margin-top: 18px;
+    margin: auto;
+}
+
+.info {
+    color: blue;
+    text-align: center;
+    font-size: 16pt;
+}

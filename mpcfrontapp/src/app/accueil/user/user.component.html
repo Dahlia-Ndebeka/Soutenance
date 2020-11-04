@@ -11,13 +11,21 @@
                         <li routerLinkActive="active"><a routerLink="/moduleformation">Module</a></li>
                         <li routerLinkActive="active"><a routerLink="/listeapprenantmoduleformation">Liste des modules</a></li>
                         <li routerLinkActive="active"><a routerLink="/messages">Discussion</a></li>
+                        <li routerLinkActive="active"><a routerLink="/accueil">Connexion</a></li>
+
+                        <!-- <li routerLinkActive="active" *ngIf="!isAuth">
+                            <a routerLink="auth/signin">Connexion</a>
+                        </li>
+                        <li>
+                            <a (click)="onSignOut()" style="cursor:pointer" *ngIf="isAuth">Déconnexion</a>
+                        </li> -->
                     </ul>
                 </div>
-                <ul>
+                <!-- <ul>
                     <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
-                </ul>
+                </ul> -->
             </div>
         </div> <br><br>
         <div>

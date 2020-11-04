@@ -1,0 +1,52 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <a class="navbar-brand" routerLink="home" routerLinkActive="active">Angular RegisterAndLogin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
+    
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="loginbtn" routerLink="/accueil" routerLinkActive="active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="loginbtn" routerLink="login" routerLinkActive="active">Login</a>
+            </li>
+            <li class="nav-item">
+                <button type="button" *ngIf="logoutbtn" class="btn btn-block" (click)="logout()">logout</button>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="loginbtn" routerLink="registration" routerLinkActive="active">Registration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="logoutbtn" routerLink="dashboard" routerLinkActive="active">Dashboard</a>
+            </li>
+        </ul>
+    </div>
+</nav> -->
+
+<div class="container">
+    <div class="card card-login mx-auto mt150">
+        <div class="card-header titre">Authentification</div>
+        <div class="card-body">
+            <form [formGroup]="authForm" (submit)="auth(authForm.value)" autocomplete="off">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" name="nomUtilisateur" class="form-control" formControlName="nomUtilisateur" id="nomUtilisateur" placeholder="nom utilisateur">
+                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.pattern">nom invalide</em>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="password" name="motDePasse" class="form-control" formControlName="motDePasse" id="motDePasse" placeholder="Mot de passe">
+                        <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatemotDePasse() && authForm.controls.motDePasse.errors.pattern">mot de passe invalide</em>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-md btn-block btn-info" [disabled]="authForm.invalid">Connexion</button><br>
+            </form>
+        </div>
+    </div>
+</div>

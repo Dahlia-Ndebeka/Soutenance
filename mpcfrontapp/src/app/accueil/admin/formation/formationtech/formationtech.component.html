@@ -1,0 +1,57 @@
+<div class="body">
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="hamburger">
+                <img src="../../assets/img/logo1.png" alt="" width="90" height="80">
+            </div>
+
+            <div class="top_menu">
+                <div class="logo">Milane Parker Center</div>
+                <div class="lien">
+                    <ul>
+                        <li routerLinkActive="active"><a routerLink="/formation">Accueil</a></li>
+                        <li routerLinkActive="active"><a routerLink="/formationad">Pôle de Administratif</a></li>
+                        <li routerLinkActive="active"><a routerLink="/formationges">Pôle de Gestion</a></li>
+                        <li routerLinkActive="active"><a routerLink="/message">Discussion</a></li>
+                        <!-- <li routerLinkActive="active"><a routerLink="/accueil">Connexion/Déconnexion</a></li> -->
+                    </ul>
+                </div>
+                <ul>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_container col-sm-10 col-sm-offset-2"><br>
+            <h2 class="display-7 text-center">Liste des formations pôle Technologique</h2>
+            <div class="item">
+                <div class="item centre col-md-12">
+                    <table class="table table-striped">
+                        <tr class="bg-info text-white">
+                            <th>Code formation</th>
+                            <th>Libelle formation</th>
+                            <th>Durée de formation</th>
+                            <th class="text-center">Opération</th>
+                        </tr>
+                        <tr *ngFor="let formation of this.list">
+                            <td>{{formation.codeFormation}}</td>
+                            <td>{{formation.libelleFormation}}</td>
+                            <td>{{formation.dureeFormation}} h </td>
+                            <td class="text-center">
+                                <a href="javascript:void(0);" (click)="editerFormation(formation)" class="btn btn-md btn-outline-warning">Editer</a> /
+                                <a href="javascript:void(0);" (click)="supprimerFormation(formation)" class="btn btn-md btn-outline-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="info">
+                    <hr>
+                    <p>Centre de Formation Informatique</p>
+                    <p>Une idee en action</p>
+                </div>
+            </div>
+        </div>
+    </div>

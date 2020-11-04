@@ -8,12 +8,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit {
+  token: string;
 
 
   constructor() { }
 
   ngOnInit(): void {
-    //console.log(ag.idAg);
+    
   }
 
 

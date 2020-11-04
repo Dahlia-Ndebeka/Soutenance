@@ -69,6 +69,15 @@ import { PolegescomComponent } from './accueil/user/commentaires/polegescom/pole
 import { PoletechcomComponent } from './accueil/user/commentaires/poletechcom/poletechcom.component';
 import { AjoutcomtechComponent } from './accueil/user/commentaires/ajoutcomtech/ajoutcomtech.component';
 import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/listecomtech.component';
+import { ModuleadComponent } from './accueil/user/moduleformation/modulead/modulead.component';
+import { ModulegesComponent } from './accueil/user/moduleformation/moduleges/moduleges.component';
+import { ModuletechComponent } from './accueil/user/moduleformation/moduletech/moduletech.component';
+import { FormationadComponent } from './accueil/admin/formation/formationad/formationad.component';
+import { FormationgesComponent } from './accueil/admin/formation/formationges/formationges.component';
+import { FormationtechComponent } from './accueil/admin/formation/formationtech/formationtech.component';
+import { FormationpoleComponent } from './accueil/admin/formation/formationpole/formationpole.component';
+import { LoginComponent } from './login/login.component';
+import { UtilisateurService } from './services/utilisateur.service';
 
 @NgModule({
   declarations: [
@@ -126,7 +135,15 @@ import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/
     PolegescomComponent,
     PoletechcomComponent,
     AjoutcomtechComponent,
-    ListecomtechComponent
+    ListecomtechComponent,
+    ModuleadComponent,
+    ModulegesComponent,
+    ModuletechComponent,
+    FormationadComponent,
+    FormationgesComponent,
+    FormationtechComponent,
+    FormationpoleComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -146,7 +163,8 @@ import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/
     FormateurService,
     ApprenantService,
     ModuleformationService,
-    MessageService
+    MessageService,
+    UtilisateurService
 
   ],
   bootstrap: [AppComponent]

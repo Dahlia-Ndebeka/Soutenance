@@ -51,6 +51,11 @@ import { ListecomgesComponent } from './accueil/user/commentaires/listecomges/li
 import { PoletechcomComponent } from './accueil/user/commentaires/poletechcom/poletechcom.component';
 import { AjoutcomtechComponent } from './accueil/user/commentaires/ajoutcomtech/ajoutcomtech.component';
 import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/listecomtech.component';
+import { FormationpoleComponent } from './accueil/admin/formation/formationpole/formationpole.component';
+import { FormationadComponent } from './accueil/admin/formation/formationad/formationad.component';
+import { FormationgesComponent } from './accueil/admin/formation/formationges/formationges.component';
+import { FormationtechComponent } from './accueil/admin/formation/formationtech/formationtech.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path:'', component:AccueilComponent, pathMatch:"prefix"},
@@ -104,6 +109,11 @@ const routes: Routes = [
   {path:'poletechcom', component:PoletechcomComponent},
   {path:'ajoutcomtech', component:AjoutcomtechComponent},
   {path:'listecomtech', component:ListecomtechComponent},
+  {path: 'formationpole', component:FormationpoleComponent},
+  {path: 'formationad', component:FormationadComponent},
+  {path: 'formationges', component:FormationgesComponent},
+  {path: 'formationtech', component:FormationtechComponent},
+  {path: 'login', component:LoginComponent},
   {path:'no-fund', component:NoFundComponent},
   {path:'**', redirectTo :'/no-fund'}
 

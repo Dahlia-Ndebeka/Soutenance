@@ -1,0 +1,17 @@
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Code agent</th>
+        <th>Nom utilisateur</th>
+        <th>Mot de passe</th>
+        <th class="text-center">Opération</th>
+    </tr>
+    <tr *ngFor="let ag of this.list">
+        <td>{{ag.codeAg}}</td>
+        <td>{{ag.nomUtilisateur}}</td>
+        <td>{{ag.motDePasse}}</td>
+        <td class="text-center">
+            <a href="javascript:void(0);" routerLink="/editeragent/{{ag.idAg}}" class="btn btn-sm btn-outline-warning">Editer</a> /
+            <a href="javascript:void(0);" (click)="supprimerAgent(ag)" class="btn btn-sm btn-outline-danger">Supprimer</a>
+        </td>
+    </tr>
+</table>

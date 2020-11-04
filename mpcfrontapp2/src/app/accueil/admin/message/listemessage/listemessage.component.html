@@ -1,0 +1,16 @@
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Sujet du message</th>
+        <th>Date de publication</th>
+        <th>Pôle de formation</th>
+        <th class="text-center">Opération</th>
+    </tr>
+    <tr *ngFor="let msg of this.list">
+        <td>{{msg.sujetMessage}}</td>
+        <td>{{msg.dateMessage}}</td>
+        <td>{{msg.polFor}} </td>
+        <td class="text-center">
+            <a href="javascript:void(0);" (click)="supprimerMessage(msg)" class="btn btn-sm btn-outline-danger">Supprimer</a>
+        </td>
+    </tr>
+</table>

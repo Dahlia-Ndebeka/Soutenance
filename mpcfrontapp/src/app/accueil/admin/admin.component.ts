@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  token: any;
 
   constructor() { }
 
   ngOnInit(): void {
+    // this.token = window.localStorage.getItem('token');
+    // if (this.token == 'admin') {
+    //   console.log("Bienvenue M. l'administrateur");
+    // }
+    
   }
 
 }

@@ -4,6 +4,8 @@ import { AgentService } from 'src/app/services/agent.service';
 import { Agent } from 'src/app/modeles/agent.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-listeagent',
@@ -13,7 +15,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class ListeagentComponent implements OnInit {
   
   // list: any;
-  list: Agent[];
+  list: Utilisateur[];
 
     agentForm = new FormGroup({
       motCle : new FormControl()
@@ -21,22 +23,21 @@ export class ListeagentComponent implements OnInit {
 
   constructor(
     private toastr : ToastrService,
-    public serviceAgent : AgentService,
+    public serviceAgent : UtilisateurService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.serviceAgent.refreshListe().subscribe((data: Agent[])=>{
+    this.serviceAgent.refreshListe().subscribe((data: Utilisateur[])=>{
       this.list = data;
     })
-
   }
 
-  supprimerAgent(ag : Agent){
+  supprimerAgent(ag : Utilisateur){
     if(confirm('Attention ce champs va être supprimé')){
-      this.serviceAgent.deleteAgent(ag.idAg).subscribe( u => {
-        this.serviceAgent.refreshListe().subscribe((data: Agent[])=>{
+      this.serviceAgent.deleteUtilisateur(ag.idCompte).subscribe( u => {
+        this.serviceAgent.refreshListeAgent().subscribe((data: Utilisateur[])=>{
           this.list = data;
         })
       this.toastr.warning('Suppression éffectué avec succes', 'Operation sur l\'agent');

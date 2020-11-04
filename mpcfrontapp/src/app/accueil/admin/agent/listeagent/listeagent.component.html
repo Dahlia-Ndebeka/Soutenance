@@ -6,11 +6,11 @@
         <th class="text-center">Opération</th>
     </tr>
     <tr *ngFor="let ag of this.list">
-        <td>{{ag.codeAg}}</td>
+        <td>{{ag.codeCompte}}</td>
         <td>{{ag.nomUtilisateur}}</td>
         <td>{{ag.motDePasse}}</td>
         <td class="text-center">
-            <a href="javascript:void(0);" routerLink="/editeragent/{{ag.idAg}}" class="btn btn-sm btn-outline-warning">Editer</a> /
+            <a href="javascript:void(0);" routerLink="/editeragent/{{ag.idCompte}}" class="btn btn-sm btn-outline-warning">Editer</a> /
             <a href="javascript:void(0);" (click)="supprimerAgent(ag)" class="btn btn-sm btn-outline-danger">Supprimer</a>
         </td>
     </tr>

@@ -3,6 +3,11 @@ import { ModuleFormation } from 'src/app/modeles/module-formation.model';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModuleformationService } from 'src/app/services/moduleformation.service';
+import { FormationService } from 'src/app/services/formation.service';
+import { FormateurService } from 'src/app/services/formateur.service';
+import { Formation } from 'src/app/modeles/formation.model';
+import { Formateur } from 'src/app/modeles/formateur.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajoutermoduleformation',
@@ -12,8 +17,16 @@ import { ModuleformationService } from 'src/app/services/moduleformation.service
 export class AjoutermoduleformationComponent implements OnInit {
 
   list: ModuleFormation[];
+  liste : Formation[];
+  lyste : Formateur[];
+  token: string;
 
-  constructor(private toastr : ToastrService, private serviceModule : ModuleformationService) { }
+  constructor(
+    private toastr : ToastrService, 
+    private serviceModule : ModuleformationService, 
+    private serviceFormation : FormationService, 
+    private serviceFormateur : FormateurService,
+    private router : Router) { }
 
   data: any;
 
@@ -27,8 +40,24 @@ export class AjoutermoduleformationComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // this.token = window.localStorage.getItem('token');
+    // if (!this.token || this.token == 'apprenant') {
+    //   this.router.navigate(['login']);
+
+    // }
+    // else if (this.token == 'formateur') {
+    // }
+
     this.serviceModule.refreshListe().subscribe((data: ModuleFormation[])=>{
       this.list = data;
+    })
+
+    this.serviceFormation.refreshListe().subscribe((data: Formation[])=>{
+      this.liste = data;
+    })
+  
+    this.serviceFormateur.refreshListe().subscribe((data: Formateur[])=>{
+      this.lyste = data;
     })
 
     // const codeValidation = "^[A][0-9]{4}$";

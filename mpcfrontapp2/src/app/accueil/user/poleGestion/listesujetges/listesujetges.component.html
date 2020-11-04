@@ -1,0 +1,14 @@
+<table class="table table-striped">
+    <tr class="bg-info text-white">
+        <th>Sujets</th>
+        <th>Date de publication</th>
+        <th class="text-center">Opération</th>
+    </tr>
+    <tr *ngFor="let msg of this.list">
+        <td>{{msg.sujetMessage}}</td>
+        <td>{{msg.dateMessage}}</td>
+        <td class="text-center">
+            <a href="javascript:void(0);" (click)="voirCom(msg)" class="btn btn-sm btn-outline-warning">Voir commentaire</a>
+        </td>
+    </tr>
+</table>

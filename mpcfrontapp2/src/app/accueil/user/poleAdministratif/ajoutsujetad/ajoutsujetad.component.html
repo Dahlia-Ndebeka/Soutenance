@@ -1,0 +1,31 @@
+<form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutSujet(agentForm.value)" novalidate autocomplete="off">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="sujetMessage">Sujet :</label>
+                <input type="text" name="sujetMessage" class="form-control" formControlName="sujetMessage" id="sujetMessage" placeholder="Code">
+                <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.pattern">Code invalide</em>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="dateMessage">Date d'envois</label>
+                <input type="date" maxlength="10" name="dateMessage" class="form-control" formControlName="dateMessage" id="dateMessage " placeholder="date message">
+                <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.pattern">nom invalide</em>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group">
+                <label for="polFor">Pole de formation</label>
+                <input type="polFor" maxlength="255" name="polFor" class="form-control" formControlName="polFor" id="polFor" placeholder="pole de formation">
+                <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.required">Attention ce champs est vide</em>
+                <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.pattern">mot de passe invalide</em>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Ajouter</button>
+</form>
