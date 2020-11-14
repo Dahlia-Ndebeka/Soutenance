@@ -1,1 +1,73 @@
-<p>modulead works!</p>
+<div class="body">
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="hamburger">
+                <img src="../../assets/img/logo1.png" alt="" width="90" height="80">
+            </div>
+
+            <div class="top_menu">
+                <div class="logo">Milane Parker Center</div>
+                <div class="lien">
+                    <ul>
+                        <li routerLinkActive="active"><a routerLink="/user">Accueil</a></li>
+                        <li routerLinkActive="active"><a routerLink="/ajoutermoduleformation">Ajouter un nouveau module</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poleadmini">Pôle Administratif</a></li>
+                        <li routerLinkActive="active"><a routerLink="/polegest">Pôle Gestion</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poletechno">Pôle Technologique</a></li>
+                        <li routerLinkActive="active"><a routerLink="/messages">Discussion</a></li>
+                        <div>
+                            <li routerLinkActive="active">
+                                <a href="javascript:void(0);" (click)="deconnexion()">
+                                    <span class="icon">
+                                            <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
+                                        </span>
+                                    <span class="title">Déconnexion</span>
+                                </a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                <ul>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_container col-sm-10 col-sm-offset-2"><br>
+            <h2 class="display-7 text-center">Liste des modules de formation AD</h2>
+            <div class="item">
+                <div class="item centre col-md-12">
+                    <table class="table table-striped">
+                        <tr class="bg-info text-white">
+                            <th>Code module</th>
+                            <th>Titre du module</th>
+                            <th>Durée du module</th>
+                            <th>Libellé formation</th>
+                            <th class="text-center">Opération</th>
+                        </tr>
+                        <tr *ngFor="let module of this.list">
+                            <td>{{module.codeModule}}</td>
+                            <td>{{module.titreModule}}</td>
+                            <td>{{module.dureeModule}}</td>
+                            <td>{{module.idFormation}}</td>
+                            <td class="text-center">
+                                <a href="javascript:void(0);" (click)="supprimerModule(module)" class="btn btn-sm btn-outline-danger">Supprimer</a> /
+                                <a href="javascript:void(0);" (click)="editerModule(module)" class="btn btn-sm btn-outline-warning">Editer</a> /
+                                <a href="javascript:void(0);" *ngIf="!moduleStatus" (click)="onbloquer()" class="btn btn-sm btn-outline-danger">Bloquer</a> .
+                                <a href="javascript:void(0);" *ngIf="moduleStatus" (click)="ondebloquer()" class="btn btn-sm btn-outline-success">Débloqué</a>
+                                <a href="javascript:void(0);" *ngIf="!voirStatus" routerLink="/voirmoduleformation/{{module.idModule}}" class="btn btn-sm btn-outline-success">Module</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="info">
+                    <hr>
+                    <p>Centre de Formation Informatique</p>
+                    <p>Une idee en action</p>
+                </div>
+            </div>
+        </div>
+    </div>

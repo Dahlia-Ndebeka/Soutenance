@@ -29,7 +29,7 @@ export class ListesujetadComponent implements OnInit {
   }
 
   voirCom(msg : Message) : void{
-    this.router.navigate(['ajoutcomad/' + msg.idMessage]);
+    this.router.navigate(['ajoutcomad/' + msg.idSujet]);
   }
 
 }

@@ -1,6 +1,6 @@
 export class Commentairead {
-    idCom : number; 	
-    idMessage : number; 	
+    idComad : number; 	
+    idSujet: number; 	
     reponse : string;	
     daterep : string;
 }

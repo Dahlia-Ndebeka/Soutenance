@@ -35,7 +35,7 @@ export class FormationtechComponent implements OnInit {
   supprimerFormation(formation : Formation){
     if(confirm('Attention ce champs va être supprimé')){
       this.serviceFormation.deleteFormation(formation.idFormation).subscribe( u => {
-      this.serviceFormation.refreshListe().subscribe((data: Formation[])=>{
+      this.serviceFormation.refreshListeTech().subscribe((data: Formation[])=>{
         this.list = data;
       }) ;
       this.toastr.warning('Suppression éffectué avec succes', 'Operation sur la formation');

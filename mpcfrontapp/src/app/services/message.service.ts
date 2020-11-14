@@ -9,7 +9,7 @@ import { Message } from '../modeles/message.model';
 })
 export class MessageService {
 
-  private apiServer = 'http://localhost/mpcApi/controleurs/message';
+  private apiServer = 'http://localhost/mpcApi/controleurs/sujet';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -25,8 +25,9 @@ export class MessageService {
       catchError(this.errorHandler)
     )
   }  
-  getMessage(idMessage): Observable<Message> {
-    return this.httpClient.get<Message>(this.apiServer + '/editersujet.php?idMessage=' + idMessage)
+
+  getMessage(idSujet): Observable<Message> {
+    return this.httpClient.get<Message>(this.apiServer + '/editersujet.php?idSujet=' + idSujet)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -61,14 +62,14 @@ export class MessageService {
   }
 
 putMessage(message): Observable<Message> {
-    return this.httpClient.put<Message>(this.apiServer + '/modifiersujet.php' + '?idMessage=' + message.idMessage, JSON.stringify(message), this.httpOptions)
+    return this.httpClient.put<Message>(this.apiServer + '/modifiersujet.php' + '?idSujet=' + message.idSujet, JSON.stringify(message), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
-  deleteMessage(idMessage){
-    return this.httpClient.delete<Message>(this.apiServer + '/supprimersujet.php?idMessage=' + idMessage, this.httpOptions)
+  deleteMessage(idSujet){
+    return this.httpClient.delete<Message>(this.apiServer + '/supprimersujet.php?idMessage=' + idSujet, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

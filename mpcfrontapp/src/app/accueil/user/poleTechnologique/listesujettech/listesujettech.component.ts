@@ -29,7 +29,7 @@ export class ListesujettechComponent implements OnInit {
   }
 
   voirCom(msg : Message) : void{
-    this.router.navigate(['voircommentaire/' + msg.idMessage]);
+    this.router.navigate(['voircommentaire/' + msg.idSujet]);
   }
 
 }

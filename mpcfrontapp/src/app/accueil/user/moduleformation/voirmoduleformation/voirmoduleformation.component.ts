@@ -45,45 +45,27 @@ export class VoirmoduleformationComponent implements OnInit {
       this.module = data;
     })
   }
-  public downloadAsPDF() {
-    const doc = new jsPDF();
 
-    const specialElementHandlers = {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
 
-    const pdfTable = this.pdfTable.nativeElement;
+  // public downloadAsPDF() {
+  //   const doc = new jsPDF();
 
-    doc.fromHTML(pdfTable.innerHTML, 15, 15, {
-      width: 190,
-      'elementHandlers': specialElementHandlers
-    });
+  //   const specialElementHandlers = {
+  //     '#editor': function (element, renderer) {
+  //       return true;
+  //     }
+  //   };
 
-    doc.save('tableToPdf.pdf');
-  }
-    // this.toastr.info('Le module a été téléchargé', 'Operation sur les modules');
+  //   const pdfTable = this.pdfTable.nativeElement;
 
-    // public telechargerModule() : void{
-    //   let DATA = this.content.nativeElement;
-    //   let doc = new jsPDF('p','pt', 'a4');
-  
-    //   let handleElement = {
-    //     '#editor':function(element,renderer){
-    //       return true;
-    //     }
-    //   };
+  //   doc.fromHTML(pdfTable.innerHTML, 15, 15, {
+  //     width: 190,
+  //     'elementHandlers': specialElementHandlers
+  //   });
 
-    //   doc.text(DATA.innerHTML,15,15,{
-    //     // 'width': 200,
-    //     // 'elementHandlers': handleElement
-    //   });
-    //   doc.save('moduleFormation.pdf');
-    //   // const doc = new jsPDF();
-    //   // doc.text(DATA.innerHTML, 10, 10);
-    //   // doc.save('moduleFormation.pdf');
-    // }
+  //   doc.save('tableToPdf.pdf');
+  // }
+    
 
 
     generatePdf(){
@@ -106,5 +88,10 @@ export class VoirmoduleformationComponent implements OnInit {
       pdfMake.createPdf(documentDefinition).open();
      }
 
+  deconnexion(){
+    window.localStorage.removeItem('token');
+    this.toastr.success('Vous etes maintenant déconnecté', 'Operation sur l\'authentification');
+    this.router.navigate(['accueil']);
+  }
 
 }

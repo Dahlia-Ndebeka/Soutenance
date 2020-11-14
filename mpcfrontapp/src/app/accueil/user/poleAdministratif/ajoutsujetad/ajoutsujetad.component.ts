@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Message } from 'src/app/modeles/message.model';
 import { MessageService } from 'src/app/services/message.service';
@@ -13,7 +14,11 @@ export class AjoutsujetadComponent implements OnInit {
 
   list: Message[];
 
-  constructor(private serviceSujet : MessageService, private toastr : ToastrService, private formBuilder : FormBuilder) {  }
+  constructor(private serviceSujet : MessageService, 
+    private toastr : ToastrService, 
+    private formBuilder : FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router) {  }
 
   data: any;
   
@@ -55,6 +60,10 @@ export class AjoutsujetadComponent implements OnInit {
       })
       this.agentForm.reset();
     })
+  }
+
+  voirCom(msg : Message) : void{
+    this.router.navigate(['ajoutcomad/' + msg.idSujet]);
   }
 
   ValidatesujetMessage(){

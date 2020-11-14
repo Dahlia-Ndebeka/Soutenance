@@ -1,5 +1,5 @@
 export class Message {
-    idMessage : number;
+    idSujet : number;
     sujetMessage : string;
     dateMessage : string;
     polFor : number;

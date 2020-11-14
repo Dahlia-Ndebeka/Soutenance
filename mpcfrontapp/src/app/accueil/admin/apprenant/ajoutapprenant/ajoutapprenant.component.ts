@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Apprenant } from 'src/app/modeles/apprenant.model';
-import { ApprenantService } from 'src/app/services/apprenant.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AgentService } from 'src/app/services/agent.service';
-import { Agent } from 'src/app/modeles/agent.model';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-ajoutapprenant',
@@ -13,92 +12,90 @@ import { Agent } from 'src/app/modeles/agent.model';
 })
 export class AjoutapprenantComponent implements OnInit {
 
-  list: Apprenant[];
-  lyste : Agent[];
+  list:Utilisateur[];
 
-  constructor(private serviceApprenant : ApprenantService, private toastr : ToastrService, private formBuilder : FormBuilder, private serviceAgent : AgentService) {  }
+  constructor(private serviceApprenant : UtilisateurService, 
+    private toastr : ToastrService, 
+    private formBuilder : FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router) {  }
 
   data: any;
-  
-  //   apprenantForm = new FormGroup({
-  //     idAg : new FormControl,
-  //     codeAg : new FormControl,
-  //     nomAp : new FormControl,
-  //     motDePasseAp : new FormControl,
-  //     confMotDePasseAp : new FormControl
-  //   })
 
-    apprenantForm : FormGroup;
-    codeAp = new FormControl();
-    nomAp = new FormControl();
-    motDePasseAp = new FormControl();
-    confMotDePasseAp = new FormControl();
-    idAg = new FormControl();
+    agentForm : FormGroup;
+    codeCompte = new FormControl();
+    nomUtilisateur = new FormControl();
+    motDePasse = new FormControl();
+    confMotDePasse = new FormControl();
+    roleUtilisateur = new FormControl();
 
   ngOnInit(): void {
 
-    this.serviceApprenant.refreshListe().subscribe((data: Apprenant[])=>{
+    this.serviceApprenant.refreshListeApprenant().subscribe((data: Utilisateur[])=>{
       this.list = data;
     })
 
-    this.serviceAgent.refreshListe().subscribe((data:Agent[])=>{
-      this.lyste = data;
-    })
-
-    // this.apprenantForm = this.formBuilder.group({
-    //     codeAg : new FormControl('', [Validators.required]),
-    //     nomUtilisateur : new FormControl('', [Validators.required]),
-    //     motDePasse : new FormControl('', [Validators.required]),
-    //     confMotDePasse : new FormControl('', [Validators.required]),
-    // });
-
     // const codeValidation = "^[A][0-9]{4}$";
-    // this.codeAg = new FormControl('', [Validators.required, Validators.pattern(codeValidation)]);
-    this.codeAp = new FormControl('', [Validators.required]);
-    this.nomAp = new FormControl('', [Validators.required]);
-    this.motDePasseAp = new FormControl('', [Validators.required]);
-    this.confMotDePasseAp = new FormControl('', [Validators.required]);
-    this.idAg = new FormControl('', [Validators.required]);
+    // this.codeCompte = new FormControl('', [Validators.required, Validators.pattern(codeValidation)]);
+    this.codeCompte = new FormControl('', [Validators.required]);
+    this.nomUtilisateur = new FormControl('', [Validators.required]);
+    this.motDePasse = new FormControl('', [Validators.required]);
+    this.confMotDePasse = new FormControl('', [Validators.required]);
+    this.roleUtilisateur = new FormControl('', [Validators.required]);
 
-    this.apprenantForm = new FormGroup({
-      codeAp : this.codeAp,
-      nomAp : this.nomAp,
-      motDePasseAp : this.motDePasseAp,
-      confMotDePasseAp : this.confMotDePasseAp,
-      idAg : this.idAg,
+    this.agentForm = new FormGroup({
+        codeCompte : this.codeCompte,
+        nomUtilisateur : this.nomUtilisateur,
+        motDePasse : this.motDePasse,
+        confMotDePasse : this.confMotDePasse,
+        roleUtilisateur : this.roleUtilisateur
     });
 
   }
 
   ajoutApprenant(obj : any){
     obj.id = 0; 
-    this.serviceApprenant.postApprenant(obj).subscribe((data): any => {
-      this.toastr.success('Apprenant ajouté avec succes', 'Operation sur l\'apprenant');
-      this.serviceApprenant.refreshListe().subscribe((data: Apprenant[])=>{
+    this.serviceApprenant.postUtilisateur(obj).subscribe((data): any => {
+      this.toastr.success('Agent ajouté avec succes', 'Operation sur l\'agent');
+      this.serviceApprenant.refreshListeApprenant().subscribe((data: Utilisateur[])=>{
         this.list = data;
       })
-      this.apprenantForm.reset();
+      this.agentForm.reset();
     })
   }
 
-  ValidatecodeAp(){
-    return this.codeAp.valid || this.codeAp.untouched;
+  editerApprenant(ap : Utilisateur) : void{
+    this.router.navigate(['editerapprenant/' + ap.idCompte]);
   }
 
-  ValidatenomAp(){
-    return this.nomAp.valid || this.nomAp.untouched;
+  supprimerApprenant(ap : Utilisateur){
+    if(confirm('Attention ce champs va être supprimé')){
+      this.serviceApprenant.deleteUtilisateur(ap.idCompte).subscribe( u => {
+        this.serviceApprenant.refreshListeApprenant().subscribe((data: Utilisateur[])=>{
+          this.list = data;
+        })
+      this.toastr.warning('Suppression éffectué avec succes', 'Operation sur l\'apprenant');
+      });
+    }
   }
 
-  ValidatemotDePasseAp(){
-    return this.motDePasseAp.valid || this.motDePasseAp.untouched;
+  ValidatecodeCompte(){
+    return this.codeCompte.valid || this.codeCompte.untouched;
   }
 
-  ValidateconfMotDePasseAp(){
-    return this.confMotDePasseAp.valid || this.confMotDePasseAp.untouched;
+  ValidatenomUtilisateur(){
+    return this.nomUtilisateur.valid || this.nomUtilisateur.untouched;
   }
 
-  ValidateidAg(){
-    return this.idAg.valid || this.idAg.untouched;
+  ValidatemotDePasse(){
+    return this.motDePasse.valid || this.motDePasse.untouched;
+  }
+
+  ValidateconfMotDePasse(){
+    return this.confMotDePasse.valid || this.confMotDePasse.untouched;
+  }
+  ValidateroleUtilisateur(){
+    return this.roleUtilisateur.valid || this.roleUtilisateur.untouched;
   }
 
 }

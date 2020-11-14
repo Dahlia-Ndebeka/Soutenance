@@ -1,52 +1,80 @@
-<form class="forms-sample" [formGroup]="apprenantForm" (submit)="ajoutApprenant(apprenantForm.value)" novalidate autocomplete="off">
+<div class="main_container col-sm-10 col-sm-offset-2">
+    <h2 class="display-7 text-center">Enregistrement de l'apprenant</h2><br>
     <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="codeAp">Code apprenant:</label>
-                <input type="text" name="codeAp" class="form-control" formControlName="codeAp" id="codeAp" placeholder="Code">
-                <em *ngIf="!ValidatecodeAp() && apprenantForm.controls.codeAp.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatecodeAp() && apprenantForm.controls.codeAp.errors.pattern">Code invalide</em>
-            </div>
+        <div class="item centre col-md-8">
+            <form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutApprenant(agentForm.value)" novalidate autocomplete="off">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="codeCompte">Code :</label>
+                            <input type="text" name="codeCompte" class="form-control" formControlName="codeCompte" id="codeCompte" placeholder="Code">
+                            <em *ngIf="!ValidatecodeCompte() && agentForm.controls.codeCompte.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatecodeCompte() && agentForm.controls.codeCompte.errors.pattern">Code invalide</em>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="nomUtilisateur">Nom utilisateur</label>
+                            <input type="text" maxlength="10" name="nomUtilisateur" class="form-control" formControlName="nomUtilisateur" id="nomUtilisateur" placeholder="nom utilisateur">
+                            <em *ngIf="!ValidatenomUtilisateur() && agentForm.controls.nomUtilisateur.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatenomUtilisateur() && agentForm.controls.nomUtilisateur.errors.pattern">nom invalide</em>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="motDePasse">Mot de passe</label>
+                            <input type="password" maxlength="255" name="motDePasse" class="form-control" formControlName="motDePasse" id="motDePasse" placeholder="Mot de passe">
+                            <em *ngIf="!ValidatemotDePasse() && agentForm.controls.motDePasse.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatemotDePasse() && agentForm.controls.motDePasse.errors.pattern">mot de passe invalide</em>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="confMotDePasse">Confirme mot de passe</label>
+                            <input type="password" maxlength="255" name="confMotDePasse" class="form-control" formControlName="confMotDePasse" id="confMotDePasse" placeholder="Confirme le mot de passe">
+                            <em *ngIf="!ValidateconfMotDePasse() && agentForm.controls.confMotDePasse.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidateconfMotDePasse() && agentForm.controls.confMotDePasse.errors.mustMatch">mot de passe invalide</em>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="roleUtilisateur">Rôle</label>
+                            <select name="roleUtilisateur" class="form-control" formControlName="roleUtilisateur" id="roleUtilisateur">
+                                <option value="admin">Admin</option>
+                                <option value="apprenant">Apprenant</option>
+                                <option value="formateur">Formateur</option>
+                            </select>
+                            <em *ngIf="!ValidateroleUtilisateur() && agentForm.controls.roleUtilisateur.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidateroleUtilisateur() && agentForm.controls.roleUtilisateur.errors.required">mot de passe invalide</em>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Ajouter</button>
+            </form>
+        </div>
+        <div class="item centre2 col-md-12">
+            <h3 class="display-8">Liste des apprenant</h3>
+            <table class="table table-striped">
+                <tr class="bg-info text-white">
+                    <th>Code apprenant</th>
+                    <th>Nom apprenant</th>
+                    <th>Mot de passe</th>
+                    <th class="text-center">Opération</th>
+                </tr>
+                <tr *ngFor="let ap of this.list">
+                    <td>{{ap.codeCompte}}</td>
+                    <td>{{ap.nomUtilisateur}}</td>
+                    <td>{{ap.motDePasse}}</td>
+                    <td class="text-center">
+                        <a href="javascript:void(0);" (click)="editerApprenant(ap)" class="btn btn-sm btn-outline-warning">Editer</a> /
+                        <a href="javascript:void(0);" (click)="supprimerApprenant(ap)" class="btn btn-sm btn-outline-danger">Supprimer</a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="nomAp">Nom apprenant</label>
-                <input type="text" maxlength="10" name="nomAp" class="form-control" formControlName="nomAp" id="nomAp" placeholder="nom apprenant">
-                <em *ngIf="!ValidatenomAp() && apprenantForm.controls.nomAp.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatenomAp() && apprenantForm.controls.nomAp.errors.pattern">nom invalide</em>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="motDePasseAp">Mot de passe</label>
-                <input type="password" maxlength="255" name="motDePasseAp" class="form-control" formControlName="motDePasseAp" id="motDePasseAp" placeholder="Mot de passe">
-                <em *ngIf="!ValidatemotDePasseAp() && apprenantForm.controls.motDePasseAp.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatemotDePasseAp() && apprenantForm.controls.motDePasseAp.errors.pattern">mot de passe invalide</em>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="confMotDePasseAp">Confirme mot de passe</label>
-                <input type="password" maxlength="255" name="confMotDePasseAp" class="form-control" formControlName="confMotDePasseAp" id="confMotDePasseAp" placeholder="Confirme le mot de passe">
-                <em *ngIf="!ValidateconfMotDePasseAp() && apprenantForm.controls.confMotDePasseAp.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidateconfMotDePasseAp() && apprenantForm.controls.confMotDePasseAp.errors.mustMatch">mot de passe invalide</em>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="idAg">Nom agent</label>
-                <select name="idAg" class="form-control" formControlName="idAg" id="idAg">
-                    <option value="">nom agent</option>
-                    <option *ngFor="let agent of this.lyste" value="{{agent.idAg}}">{{agent.codeAg}} - {{agent.nomUtilisateur}}</option>
-                </select>
-                <em *ngIf="!ValidateidAg() && apprenantForm.controls.idAg.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidateidAg() && apprenantForm.controls.idAg.errors.pattern">Champs invalide</em>
-            </div>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-lg btn-block" [disabled]="apprenantForm.invalid">Ajouter</button>
-</form>
+</div>

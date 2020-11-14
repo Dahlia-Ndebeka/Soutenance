@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { AgentService } from 'src/app/services/agent.service';
-import { Agent } from 'src/app/modeles/agent.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Utilisateur } from 'src/app/modeles/utilisateur';
@@ -29,7 +27,7 @@ export class ListeagentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.serviceAgent.refreshListe().subscribe((data: Utilisateur[])=>{
+    this.serviceAgent.refreshListeAgent().subscribe((data: Utilisateur[])=>{
       this.list = data;
     })
   }

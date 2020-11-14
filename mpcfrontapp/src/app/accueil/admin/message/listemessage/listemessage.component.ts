@@ -29,12 +29,12 @@ export class ListemessageComponent implements OnInit {
   }
 
   editerMessage(msg : Message) : void{
-    this.router.navigate(['editermessage/' + msg.idMessage]);
+    this.router.navigate(['editermessage/' + msg.idSujet]);
   }
 
   supprimerMessage(msg : Message){
     if(confirm('Attention ce champs va être supprimé')){
-      this.serviceMessage.deleteMessage(msg.idMessage).subscribe( u => {
+      this.serviceMessage.deleteMessage(msg.idSujet).subscribe( u => {
       this.serviceMessage.refreshListe().subscribe((data: Message[])=>{
         this.list = data;
       }) ;

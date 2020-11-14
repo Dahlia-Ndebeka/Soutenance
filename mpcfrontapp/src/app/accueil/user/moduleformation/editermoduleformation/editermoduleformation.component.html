@@ -43,17 +43,23 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="idFormation">Nom de la formation</label>
-                                        <input type="text" maxlength="255" name="idFormation" class="form-control" formControlName="idFormation" id="idFormation" placeholder="Mot de passe">
+                                        <select name="idFormation" class="form-control" formControlName="idFormation" id="idFormation">
+                                            <option value=""> nom de la formation </option>
+                                            <option *ngFor="let formation of this.liste" value="{{formation.idFormation}}"> {{formation.libelleFormation}} </option>
+                                        </select>
                                         <em *ngIf="!ValidateidFormation() && moduleForm.controls.idFormation.errors.required">Attention ce champs est vide</em>
                                         <em *ngIf="!ValidateidFormation() && moduleForm.controls.idFormation.errors.pattern">champs invalide</em>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="idFor">Nom du formateur</label>
-                                        <input type="text" maxlength="255" name="idFor" class="form-control" formControlName="idFor" id="idFor" placeholder="Confirme le mot de passe">
-                                        <em *ngIf="!ValidateidFor() && moduleForm.controls.idFor.errors.required">Attention ce champs est vide</em>
-                                        <em *ngIf="!ValidateidFor() && moduleForm.controls.idFor.errors.mustMatch">champs invalide</em>
+                                        <label for="idCompte">Nom du formateur</label>
+                                        <select name="idCompte" class="form-control" formControlName="idCompte" id="idCompte">
+                                            <option value=""> nom du formateur </option>
+                                            <option *ngFor="let for of this.lyste" value="{{for.idCompte}}"> {{for.nomUtilisateur}} </option>
+                                        </select>
+                                        <em *ngIf="!ValidateidCompte() && moduleForm.controls.idFor.errors.required">Attention ce champs est vide</em>
+                                        <em *ngIf="!ValidateidCompte() && moduleForm.controls.idFor.errors.mustMatch">champs invalide</em>
                                     </div>
                                 </div>
                             </div>

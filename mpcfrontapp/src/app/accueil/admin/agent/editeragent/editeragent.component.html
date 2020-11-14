@@ -16,13 +16,13 @@
                 <div class="item centre col-md-10">
                     <form class="forms-sample" [formGroup]="agentForm" novalidate autocomplete="off">
                         <div class="row">
-                            <input type="hidden" name="idAg" class="form-control" formControlName="idAg">
+                            <input type="hidden" name="idCompte" class="form-control" formControlName="idCompte">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="codeAg">Code :</label>
-                                    <input type="text" name="codeAg" class="form-control" formControlName="codeAg" id="codeAg" placeholder="Code">
-                                    <em *ngIf="!ValidatecodeAg() && agentForm.controls.codeAg.errors.required">Attention ce champs est vide</em>
-                                    <em *ngIf="!ValidatecodeAg() && agentForm.controls.codeAg.errors.pattern">Code invalide</em>
+                                    <label for="codeCompte">Code :</label>
+                                    <input type="text" name="codeCompte" class="form-control" formControlName="codeCompte" id="codeCompte" placeholder="Code">
+                                    <em *ngIf="!ValidatecodeCompte() && agentForm.controls.codeCompte.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatecodeCompte() && agentForm.controls.codeCompte.errors.pattern">Code invalide</em>
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -53,13 +53,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-3">
-                                <button type="submit" (click)="modifierAgent()" class="btn btn-lg btn-block btn-info" [disabled]="agentForm.invalid">Modifier</button>
-                            </div>
-                            <div class="col-lg-3">
-                                <button type="submit" (click)="annulerAgent()" class="btn btn-lg btn-block btn-dark ">Annuler</button>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="roleUtilisateur">Rôle</label>
+                                    <select name="roleUtilisateur" class="form-control" formControlName="roleUtilisateur" id="roleUtilisateur">
+                                        <option value="admin">Admin</option>
+                                        <option value="apprenant">Apprenant</option>
+                                        <option value="formateur">Formateur</option>
+                                    </select>
+                                    <em *ngIf="!ValidateroleUtilisateur() && agentForm.controls.roleUtilisateur.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateroleUtilisateur() && agentForm.controls.roleUtilisateur.errors.required">mot de passe invalide</em>
+                                </div>
                             </div>
                         </div>
+                        <button type="submit" (click)="modifierAgent()" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Modifier</button>
                     </form>
                 </div>
             </div>

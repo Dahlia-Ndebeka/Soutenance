@@ -8,17 +8,22 @@
                 <div class="logo">Milane Parker Center</div>
                 <div class="lien">
                     <ul>
-                        <li routerLinkActive="active"><a routerLink="/moduleformation">Module</a></li>
-                        <li routerLinkActive="active"><a routerLink="/listeapprenantmoduleformation">Liste des modules</a></li>
+                        <!-- <li routerLinkActive="active"><a routerLink="/moduleformation">Module</a></li>
+                        <li routerLinkActive="active"><a routerLink="/listeapprenantmoduleformation">Liste des modules</a></li> -->
+                        <li routerLinkActive="active"><a routerLink="/poleadmini">Pôle Administratif</a></li>
+                        <li routerLinkActive="active"><a routerLink="/polegest">Pôle Gestion</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poletechno">Pôle Technologique</a></li>
                         <li routerLinkActive="active"><a routerLink="/messages">Discussion</a></li>
-                        <li routerLinkActive="active"><a routerLink="/accueil">Connexion</a></li>
-
-                        <!-- <li routerLinkActive="active" *ngIf="!isAuth">
-                            <a routerLink="auth/signin">Connexion</a>
-                        </li>
-                        <li>
-                            <a (click)="onSignOut()" style="cursor:pointer" *ngIf="isAuth">Déconnexion</a>
-                        </li> -->
+                        <div>
+                            <li routerLinkActive="active">
+                                <a href="javascript:void(0);" (click)="deconnexion()">
+                                    <span class="icon">
+                                            <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
+                                        </span>
+                                    <span class="title">Déconnexion</span>
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
                 <!-- <ul>

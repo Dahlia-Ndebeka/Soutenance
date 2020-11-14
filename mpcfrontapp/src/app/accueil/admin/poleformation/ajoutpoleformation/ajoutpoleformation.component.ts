@@ -3,8 +3,9 @@ import { Poleformation } from 'src/app/modeles/poleformation.model';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PoleformationService } from 'src/app/services/poleformation.service';
 import { ToastrService } from 'ngx-toastr';
-import { Agent } from 'src/app/modeles/agent.model';
-import { AgentService } from 'src/app/services/agent.service';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajoutpoleformation',
@@ -14,9 +15,14 @@ import { AgentService } from 'src/app/services/agent.service';
 export class AjoutpoleformationComponent implements OnInit {
 
   list: Poleformation[];
-  lyste : Agent[];
+  lyste : Utilisateur[];
   
-    constructor(private servicePole : PoleformationService, private toastr : ToastrService, private formBuilder : FormBuilder, private serviceAgent : AgentService ) {  }
+    constructor(private servicePole : PoleformationService, 
+      private toastr : ToastrService, 
+      private formBuilder : FormBuilder, 
+      private serviceAgent : UtilisateurService,
+      private route: ActivatedRoute,
+      private router: Router ) {  }
 
   data: any;
 
@@ -27,7 +33,7 @@ export class AjoutpoleformationComponent implements OnInit {
     poleForm : FormGroup
     codePolFor = new FormControl();
     libellePolFor = new FormControl();
-    idAg = new FormControl();
+    idCompte = new FormControl();
 
   ngOnInit(): void {
 
@@ -35,7 +41,7 @@ export class AjoutpoleformationComponent implements OnInit {
       this.list = data;
     })
 
-    this.serviceAgent.refreshListe().subscribe((data:Agent[])=>{
+    this.serviceAgent.refreshListeAgent().subscribe((data:Utilisateur[])=>{
       this.lyste = data;
     })
 
@@ -47,7 +53,7 @@ export class AjoutpoleformationComponent implements OnInit {
     this.poleForm = new FormGroup({
         codePolFor : this.codePolFor,
         libellePolFor : this.libellePolFor,
-        idAg : this.idAg
+        idCompte : this.idCompte
     });
 
   }
@@ -63,6 +69,21 @@ export class AjoutpoleformationComponent implements OnInit {
     })
   }
 
+  editerPole(pole : Poleformation) : void{
+    this.router.navigate(['editerpoleformation/' + pole.idPolFor]);
+  }
+
+  supprimerPole(pole : Poleformation){
+    if(confirm('Attention ce champs va être supprimé')){
+      this.servicePole.deletePole(pole.idPolFor).subscribe( u => {
+        this.servicePole.refreshListe().subscribe((data: Poleformation[])=>{
+          this.list = data;
+        })
+      this.toastr.warning('Suppression éffectué avec succes', 'Operation sur les pôles de formation');
+      });
+    }
+  }
+
   ValidatecodePolFor(){
     return this.codePolFor.valid || this.codePolFor.untouched;
   }
@@ -70,8 +91,8 @@ export class AjoutpoleformationComponent implements OnInit {
   ValidatelibellePolFor(){
     return this.libellePolFor.valid || this.libellePolFor.untouched;
   }
-  ValidateidAg(){
-    return this.idAg.valid || this.idAg.untouched;
+  ValidateidCompte(){
+    return this.idCompte.valid || this.idCompte.untouched;
   }
 
 }

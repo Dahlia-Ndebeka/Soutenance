@@ -11,7 +11,16 @@
                     <ul>
                         <li routerLinkActive="active"><a routerLink="/user">Accueil</a></li>
                         <li routerLinkActive="active"><a routerLink="/messages">Discussion</a></li>
-                        <li routerLinkActive="active"><a routerLink="/accueil">Connexion/Déconnexion</a></li>
+                        <div>
+                            <li routerLinkActive="active">
+                                <a href="javascript:void(0);" (click)="deconnexion()">
+                                    <span class="icon">
+                                            <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
+                                        </span>
+                                    <span class="title">Déconnexion</span>
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
                 <ul>

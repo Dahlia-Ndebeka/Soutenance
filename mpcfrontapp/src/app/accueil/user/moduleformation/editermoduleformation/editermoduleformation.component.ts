@@ -4,6 +4,10 @@ import { ModuleFormation } from 'src/app/modeles/module-formation.model';
 import { ModuleformationService } from 'src/app/services/moduleformation.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Formation } from 'src/app/modeles/formation.model';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
+import { FormationService } from 'src/app/services/formation.service';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-editermoduleformation',
@@ -14,6 +18,8 @@ export class EditermoduleformationComponent implements OnInit {
 
   list: ModuleFormation[];
   data: any;
+  liste : Formation[];
+  lyste : Utilisateur[];
 
   moduleForm : FormGroup;
   idModule = new FormControl();
@@ -22,14 +28,27 @@ export class EditermoduleformationComponent implements OnInit {
   contenuModule = new FormControl();
   dureeModule = new FormControl();
   idFormation = new FormControl();
-  idFor = new FormControl();
+  idCompte = new FormControl();
 
-  constructor(private toastr : ToastrService, private serviceModule : ModuleformationService, private routes : ActivatedRoute, private router : Router) { }
+  constructor(private toastr : ToastrService, 
+    private serviceModule : ModuleformationService, 
+    private routes : ActivatedRoute, 
+    private router : Router,
+    private serviceFormation : FormationService, 
+    private serviceFormateur : UtilisateurService,) { }
   
   ngOnInit(): void {
 
     this.serviceModule.refreshListe().subscribe((data: ModuleFormation[])=>{
       this.list = data;
+    })
+
+    this.serviceFormation.refreshListe().subscribe((data: Formation[])=>{
+      this.liste = data;
+    })
+  
+    this.serviceFormateur.refreshListeFormateur().subscribe((data: Utilisateur[])=>{
+      this.lyste = data;
     })
 
     // const codeValidation = "^[A][0-9]{4}$";
@@ -40,7 +59,7 @@ export class EditermoduleformationComponent implements OnInit {
     this.contenuModule = new FormControl('', [Validators.required]);
     this.dureeModule = new FormControl('', [Validators.required]);
     this.idFormation = new FormControl('', [Validators.required]);
-    this.idFor = new FormControl('', [Validators.required]);
+    this.idCompte = new FormControl('', [Validators.required]);
 
     this.moduleForm = new FormGroup({
       idModule : this.idModule,
@@ -49,7 +68,7 @@ export class EditermoduleformationComponent implements OnInit {
       titreModule : this.titreModule,
       dureeModule : this.dureeModule,
       idFormation : this.idFormation,
-      idFor : this.idFor
+      idCompte : this.idCompte
     });
 
     const routeParams = this.routes.snapshot.params;
@@ -66,17 +85,17 @@ export class EditermoduleformationComponent implements OnInit {
     .subscribe(data =>{
         this.toastr.info('Module modifié avec succes', 'Operation sur les modules');
         this.moduleForm.reset();
-        this.router.navigate(['moduleformation']);
+        this.router.navigate(['ajoutermoduleformation']);
     },error =>{
         alert(error);
       }
     );
   }
 
-  annulerModule(){
-    this.moduleForm.reset();
-    this.router.navigate(['moduleformation']);
-  }
+  // annulerModule(){
+  //   this.moduleForm.reset();
+  //   this.router.navigate(['moduleformation']);
+  // }
 
   ValidatecodeModule(){
     return this.codeModule.valid || this.codeModule.untouched;
@@ -98,8 +117,8 @@ export class EditermoduleformationComponent implements OnInit {
     return this.idFormation.valid || this.idFormation.untouched;
   }
 
-  ValidateidFor(){
-    return this.idFor.valid || this.idFor.untouched;
+  ValidateidCompte(){
+    return this.idCompte.valid || this.idCompte.untouched;
   }
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Formateur } from 'src/app/modeles/formateur.model';
 import { ToastrService } from 'ngx-toastr';
-import { FormateurService } from 'src/app/services/formateur.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-listeformateur',
@@ -11,34 +11,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListeformateurComponent implements OnInit {
 
-    list: Formateur[];
+    list: Utilisateur[];
 
   constructor(
     private toastr : ToastrService,
-    public serviceFormateur : FormateurService,
+    public serviceFormateur : UtilisateurService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.serviceFormateur.refreshListe().subscribe((data: Formateur[])=>{
+    this.serviceFormateur.refreshListeFormateur().subscribe((data: Utilisateur[])=>{
       this.list = data;
     })  
   }
 
-  editerFormateur(For : Formateur) : void{
-    this.router.navigate(['editerformateur/' + For.idFor]);
-  }
+  // editerFormateur(For : Utilisateur) : void{
+  //   this.router.navigate(['editerformateur/' + For.idCompte]);
+  // }
 
-  supprimerFormateur(For : Formateur){
-    if(confirm('Attention ce champs va être supprimé')){
-      this.serviceFormateur.deleteFormateur(For.idFor).subscribe( u => {
-        this.serviceFormateur.refreshListe().subscribe((data: Formateur[])=>{
-          this.list = data;
-        })
-      this.toastr.warning('Suppression éffectué avec succes', 'Operation sur le formateur');
-      });
-    }
-  }
+  // supprimerFormateur(For : Utilisateur){
+  //   if(confirm('Attention ce champs va être supprimé')){
+  //     this.serviceFormateur.deleteUtilisateur(For.idCompte).subscribe( u => {
+  //       this.serviceFormateur.refreshListe().subscribe((data: Utilisateur[])=>{
+  //         this.list = data;
+  //       })
+  //     this.toastr.warning('Suppression éffectué avec succes', 'Operation sur le formateur');
+  //     });
+  //   }
+  // }
 
 }

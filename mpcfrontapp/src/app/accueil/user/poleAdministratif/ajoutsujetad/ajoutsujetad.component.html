@@ -1,31 +1,55 @@
-<form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutSujet(agentForm.value)" novalidate autocomplete="off">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="sujetMessage">Sujet :</label>
-                <input type="text" name="sujetMessage" class="form-control" formControlName="sujetMessage" id="sujetMessage" placeholder="Code">
-                <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.pattern">Code invalide</em>
-            </div>
+<div class="main_container col-sm-10 col-sm-offset-2">
+    <div class="row center">
+        <div class="item centre2 col-md-12">
+            <h3 class="display-6">Ajouter un nouveau sujet</h3>
+            <form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutSujet(agentForm.value)" novalidate autocomplete="off">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="sujetMessage">Sujet :</label>
+                            <input type="text" name="sujetMessage" class="form-control" formControlName="sujetMessage" id="sujetMessage" placeholder="Code">
+                            <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatesujetMessage() && agentForm.controls.sujetMessage.errors.pattern">Code invalide</em>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="dateMessage">Date d'envois</label>
+                            <input type="date" maxlength="10" name="dateMessage" class="form-control" formControlName="dateMessage" id="dateMessage " placeholder="date message">
+                            <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.pattern">nom invalide</em>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="polFor">Pole de formation</label>
+                            <input type="polFor" maxlength="255" name="polFor" class="form-control" formControlName="polFor" id="polFor" placeholder="pole de formation">
+                            <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.pattern">mot de passe invalide</em>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Ajouter</button>
+            </form>
         </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="dateMessage">Date d'envois</label>
-                <input type="date" maxlength="10" name="dateMessage" class="form-control" formControlName="dateMessage" id="dateMessage " placeholder="date message">
-                <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatedateMessage() && agentForm.controls.dateMessage.errors.pattern">nom invalide</em>
-            </div>
+        <div class="item centre2 col-md-12">
+            <h3 class="display-8">Liste des sujets</h3>
+            <table class="table table-striped">
+                <tr class="bg-info text-white">
+                    <th>Sujets</th>
+                    <th>Date de publication</th>
+                    <th class="text-center">Opération</th>
+                </tr>
+                <tr *ngFor="let msg of this.list">
+                    <td>{{msg.sujetMessage}}</td>
+                    <td>{{msg.dateMessage}}</td>
+                    <td class="text-center">
+                        <a href="javascript:void(0);" (click)="voirCom(msg)" class="btn btn-sm btn-outline-warning">Voir commentaire</a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="polFor">Pole de formation</label>
-                <input type="polFor" maxlength="255" name="polFor" class="form-control" formControlName="polFor" id="polFor" placeholder="pole de formation">
-                <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatepolFor() && agentForm.controls.polFor.errors.pattern">mot de passe invalide</em>
-            </div>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-lg btn-block" [disabled]="agentForm.invalid">Ajouter</button>
-</form>
+</div>

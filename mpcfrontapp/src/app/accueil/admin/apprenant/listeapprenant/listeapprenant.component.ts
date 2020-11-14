@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Apprenant } from 'src/app/modeles/apprenant.model';
 import { ToastrService } from 'ngx-toastr';
-import { ApprenantService } from 'src/app/services/apprenant.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-listeapprenant',
@@ -12,34 +12,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ListeapprenantComponent implements OnInit {
 
   
-  list: Apprenant[];
+  list: Utilisateur[];
 
   constructor(
     private toastr : ToastrService,
-    public serviceApprenant : ApprenantService,
+    public serviceApprenant : UtilisateurService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.serviceApprenant.refreshListe().subscribe((data: Apprenant[])=>{
+    this.serviceApprenant.refreshListeApprenant().subscribe((data: Utilisateur[])=>{
       this.list = data;
     })  
   }
 
-  editerApprenant(ap : Apprenant) : void{
-    this.router.navigate(['editerapprenant/' + ap.idAp]);
-  }
+  // editerApprenant(ap : Utilisateur) : void{
+  //   this.router.navigate(['editerapprenant/' + ap.idCompte]);
+  // }
 
-  supprimerApprenant(ap : Apprenant){
-    if(confirm('Attention ce champs va être supprimé')){
-      this.serviceApprenant.deleteApprenant(ap.idAp).subscribe( u => {
-        this.serviceApprenant.refreshListe().subscribe((data: Apprenant[])=>{
-          this.list = data;
-        })
-      this.toastr.warning('Suppression éffectué avec succes', 'Operation sur l\'apprenant');
-      });
-    }
-  }
+  // supprimerApprenant(ap : Utilisateur){
+  //   if(confirm('Attention ce champs va être supprimé')){
+  //     this.serviceApprenant.deleteUtilisateur(ap.idCompte).subscribe( u => {
+  //       this.serviceApprenant.refreshListe().subscribe((data: Utilisateur[])=>{
+  //         this.list = data;
+  //       })
+  //     this.toastr.warning('Suppression éffectué avec succes', 'Operation sur l\'apprenant');
+  //     });
+  //   }
+  // }
 
 }

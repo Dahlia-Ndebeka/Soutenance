@@ -9,11 +9,20 @@
                 <div class="lien">
                     <ul>
                         <li routerLinkActive="active"><a routerLink="/user">Accueil</a></li>
-                        <li routerLinkActive="active"><a routerLink="/listeapprenantmoduleformation">Liste des modules</a></li>
                         <li routerLinkActive="active"><a routerLink="/poleadmin">Pôle Administratif</a></li>
                         <li routerLinkActive="active"><a routerLink="/poleges">Pôle de Gestion</a></li>
                         <li routerLinkActive="active"><a routerLink="/poletech">Pôle Technologique</a></li>
                         <li routerLinkActive="active"><a routerLink="/poleadmin">Liste des sujets</a></li>
+                        <div>
+                            <li routerLinkActive="active">
+                                <a href="javascript:void(0);" (click)="deconnexion()">
+                                    <span class="icon">
+                                            <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
+                                        </span>
+                                    <span class="title">Déconnexion</span>
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
                 <ul>
@@ -26,29 +35,26 @@
         <div class="main_container col-sm-10 col-sm-offset-2">
             <div class="row center">
                 <div class="item centre2 col-md-12">
-                    <h3 class="display-6">Ajouter un nouveau sujet</h3>
+                    <h3 class="display-6">Ajouter un nouveau commentaire</h3>
                     <form class="forms-sample" [formGroup]="agentForm" (submit)="ajoutCom(agentForm.value)" novalidate autocomplete="off">
                         <div class="row">
-                            <input type="hidden" name="idMessage" class="form-control" formControlName="idMessage">
-                            <!-- <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="reponse">Sujet : </label>
-                                    <input type="text" name="sujetMessage" class="form-control" formControlName="sujetMessage" id="reponse" />
-                                </div>
-                            </div> -->
+                            <input type="text" name="idSujet" class="form-control" formControlName="idSujet">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="reponse">Votre commentaire : </label>
                                     <textarea name="reponse" class="form-control" formControlName="reponse" id="reponse" placeholder="votre commentaire" cols="10" rows="5"></textarea>
                                     <em *ngIf="!Validatereponse() && agentForm.controls.reponse.errors.required">Attention ce champs est vide</em>
                                     <em *ngIf="!Validatereponse() && agentForm.controls.reponse.errors.pattern">Code invalide</em>
-                                    <label for="dateRep">Date d'envois</label>
-                                    <input type="date" maxlength="10" name="dateRep" class="form-control" formControlName="dateRep" id="dateRep" placeholder="date commentaire">
-                                    <em *ngIf="!ValidatedateRep() && agentForm.controls.dateRep.errors.required">Attention ce champs est vide</em>
-                                    <em *ngIf="!ValidatedateRep() && agentForm.controls.dateRep.errors.pattern">nom invalide</em>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
                                 <div class="form-group">
-
+                                    <label for="daterep">Date d'envois</label>
+                                    <input type="date" maxlength="10" name="daterep" class="form-control" formControlName="daterep" id="daterep" placeholder="date commentaire">
+                                    <em *ngIf="!Validatedaterep() && agentForm.controls.daterep.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!Validatedaterep() && agentForm.controls.daterep.errors.pattern">nom invalide</em>
                                 </div>
                             </div>
                         </div>

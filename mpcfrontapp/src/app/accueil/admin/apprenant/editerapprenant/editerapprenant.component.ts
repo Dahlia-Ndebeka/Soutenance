@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Apprenant } from 'src/app/modeles/apprenant.model';
-import { ApprenantService } from 'src/app/services/apprenant.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-editerapprenant',
@@ -12,74 +12,50 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditerapprenantComponent implements OnInit {
 
-  list: Apprenant[];
+  agentForm : FormGroup;
+  idCompte = new FormControl();
+  codeCompte = new FormControl();
+  nomUtilisateur = new FormControl();
+  motDePasse = new FormControl();
+  confMotDePasse = new FormControl();
+  roleUtilisateur = new FormControl();
 
-  constructor(private serviceApprenant : ApprenantService, private toastr : ToastrService, private formBuilder : FormBuilder, 
-    private routes : ActivatedRoute, private router : Router) {  }
-
-  data: any;
-  
-  //   apprenantForm = new FormGroup({
-  //     idAg : new FormControl,
-  //     codeAg : new FormControl,
-  //     nomAp : new FormControl,
-  //     motDePasseAp : new FormControl,
-  //     confMotDePasseAp : new FormControl
-  //   })
-
-    apprenantForm : FormGroup;
-    idAp = new FormControl();
-    codeAp = new FormControl();
-    nomAp = new FormControl();
-    motDePasseAp = new FormControl();
-    confMotDePasseAp = new FormControl();
-    idAg = new FormControl();
+  constructor(private formBuilder : FormBuilder, private routes : ActivatedRoute, private serviceAgent : UtilisateurService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
 
-    this.serviceApprenant.refreshListe().subscribe((data: Apprenant[])=>{
-      this.list = data;
-    })
-
-    // this.apprenantForm = this.formBuilder.group({
-    //     codeAg : new FormControl('', [Validators.required]),
-    //     nomUtilisateur : new FormControl('', [Validators.required]),
-    //     motDePasse : new FormControl('', [Validators.required]),
-    //     confMotDePasse : new FormControl('', [Validators.required]),
-    // });
-
     // const codeValidation = "^[A][0-9]{4}$";
     // this.codeAg = new FormControl('', [Validators.required, Validators.pattern(codeValidation)]);
-    this.idAp = new FormControl('', [Validators.required]);
-    this.codeAp = new FormControl('', [Validators.required]);
-    this.nomAp = new FormControl('', [Validators.required]);
-    this.motDePasseAp = new FormControl('', [Validators.required]);
-    this.confMotDePasseAp = new FormControl('', [Validators.required]);
-    this.idAg = new FormControl('', [Validators.required]);
+    this.idCompte = new FormControl('', [Validators.required]);
+    this.codeCompte = new FormControl('', [Validators.required]);
+    this.nomUtilisateur = new FormControl('', [Validators.required]);
+    this.motDePasse = new FormControl('', [Validators.required]);
+    this.confMotDePasse = new FormControl('', [Validators.required]);
+    this.roleUtilisateur = new FormControl('', [Validators.required]);
 
-    this.apprenantForm = new FormGroup({
-      idAp : this.idAp,
-      codeAp : this.codeAp,
-      nomAp : this.nomAp,
-      motDePasseAp : this.motDePasseAp,
-      confMotDePasseAp : this.confMotDePasseAp,
-      idAg : this.idAg,
+    this.agentForm = new FormGroup({
+        idCompte  : this.idCompte ,
+        codeCompte : this.codeCompte,
+        nomUtilisateur : this.nomUtilisateur,
+        motDePasse : this.motDePasse,
+        confMotDePasse : this.confMotDePasse,
+        roleUtilisateur : this.roleUtilisateur
     });
 
     const routeParams = this.routes.snapshot.params;
-    console.log(routeParams.idAp);
+    console.log(routeParams.idCompte);
 
-    this.serviceApprenant.getApprenant(routeParams.idAp).subscribe((data : any) =>{
-      this.apprenantForm.patchValue(data);
+    this.serviceAgent.getUtilisateur(routeParams.idCompte).subscribe((data : any) =>{
+      this.agentForm.patchValue(data);
     })
 
   }
 
   modifierApprenant(){ 
-    this.serviceApprenant.putApprenant(this.apprenantForm.value)
+    this.serviceAgent.putUtilisateur(this.agentForm.value)
     .subscribe(data =>{
-      this.toastr.success('Apprenant modifier avec succes', 'Operation sur l\'apprenant');
-        this.apprenantForm.reset();
+        this.toastr.info('Modification effectué avec succes', 'Operation sur l\'apprenant');
+        this.agentForm.reset();
         this.router.navigate(['apprenant']);
     },error =>{
         alert(error);
@@ -87,29 +63,28 @@ export class EditerapprenantComponent implements OnInit {
     );
   }
 
-  annulerApprenant(){
-    this.apprenantForm.reset();
+  annulerAgent(){
+    this.agentForm.reset();
     this.router.navigate(['apprenant']);
   }
 
-  ValidatecodeAp(){
-    return this.codeAp.valid || this.codeAp.untouched;
+  ValidatecodeCompte(){
+    return this.codeCompte.valid || this.codeCompte.untouched;
   }
 
-  ValidatenomAp(){
-    return this.nomAp.valid || this.nomAp.untouched;
+  ValidatenomUtilisateur(){
+    return this.nomUtilisateur.valid || this.nomUtilisateur.untouched;
   }
 
-  ValidatemotDePasseAp(){
-    return this.motDePasseAp.valid || this.motDePasseAp.untouched;
+  ValidatemotDePasse(){
+    return this.motDePasse.valid || this.motDePasse.untouched;
   }
 
-  ValidateconfMotDePasseAp(){
-    return this.confMotDePasseAp.valid || this.confMotDePasseAp.untouched;
+  ValidateconfMotDePasse(){
+    return this.confMotDePasse.valid || this.confMotDePasse.untouched;
   }
-
-  ValidateidAg(){
-    return this.idAg.valid || this.idAg.untouched;
+  ValidateroleUtilisateur(){
+    return this.roleUtilisateur.valid || this.roleUtilisateur.untouched;
   }
 
 }

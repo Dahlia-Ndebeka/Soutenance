@@ -4,6 +4,8 @@ import { FormationService } from 'src/app/services/formation.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
 
 @Component({
   selector: 'app-editerformation',
@@ -13,9 +15,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditerformationComponent implements OnInit {
 
   list: Formation[];
+  lyste : Utilisateur[];
 
   constructor(private serviceFormation : FormationService, private toastr : ToastrService, private formBuilder : FormBuilder,
-     private routes : ActivatedRoute, private router : Router) {  }
+     private routes : ActivatedRoute, private router : Router, private serviceUtilisateur : UtilisateurService) {  }
 
   data: any;
   
@@ -25,7 +28,6 @@ export class EditerformationComponent implements OnInit {
     libelleFormation = new FormControl();
     dureeFormation = new FormControl();
     idPolFor = new FormControl();
-    idAg = new FormControl();
 
   ngOnInit(): void {
 
@@ -33,6 +35,9 @@ export class EditerformationComponent implements OnInit {
         this.list = data;
     }) ;
   
+    this.serviceUtilisateur.refreshListeAgent().subscribe((data:Utilisateur[])=>{
+      this.lyste = data;
+    })
 
     // const codeValidation = "^[A][0-9]{4}$";
     // this.codeAg = new FormControl('', [Validators.required, Validators.pattern(codeValidation)]);
@@ -42,15 +47,13 @@ export class EditerformationComponent implements OnInit {
     this.libelleFormation = new FormControl('', [Validators.required]);
     this.dureeFormation = new FormControl('', [Validators.required]);
     this.idPolFor = new FormControl('', [Validators.required]);
-    this.idAg = new FormControl('', [Validators.required]);
 
     this.formationForm = new FormGroup({
       idFormation : this.idFormation,
       codeFormation : this.codeFormation,
       libelleFormation : this.libelleFormation,
       dureeFormation : this.dureeFormation,
-      idPolFor : this.idPolFor,
-      idAg : this.idAg
+      idPolFor : this.idPolFor
     });
 
     const routeParams = this.routes.snapshot.params;
@@ -65,7 +68,7 @@ export class EditerformationComponent implements OnInit {
   modifierFormation(){ 
     this.serviceFormation.putFormation(this.formationForm.value)
     .subscribe(data =>{
-        this.toastr.success('Formation modifier avec succes', 'Operation sur la formation');
+        this.toastr.info('Formation modifier avec succes', 'Operation sur la formation');
         this.formationForm.reset();
         this.serviceFormation.refreshListe().subscribe((data: Formation[])=>{
             this.list = data;
@@ -96,9 +99,6 @@ export class EditerformationComponent implements OnInit {
 
   ValidateidPolFor(){
     return this.idPolFor.valid || this.idPolFor.untouched;
-  }
-  ValidateidAg(){
-    return this.idAg.valid || this.idAg.untouched;
   }
 
 }

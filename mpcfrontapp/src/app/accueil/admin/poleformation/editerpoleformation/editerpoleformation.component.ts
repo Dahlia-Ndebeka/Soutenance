@@ -22,7 +22,7 @@ export class EditerpoleformationComponent implements OnInit {
     idPolFor = new FormControl();
     codePolFor = new FormControl();
     libellePolFor = new FormControl();
-    idAg = new FormControl();
+    idCompte = new FormControl();
 
   ngOnInit(): void {
 
@@ -40,7 +40,7 @@ export class EditerpoleformationComponent implements OnInit {
       idPolFor : this.idPolFor,
       codePolFor : this.codePolFor,
       libellePolFor : this.libellePolFor,
-      idAg : this.idAg
+      idCompte : this.idCompte
     });
 
     const routeParams = this.routes.snapshot.params;
@@ -79,8 +79,8 @@ export class EditerpoleformationComponent implements OnInit {
   ValidatelibellePolFor(){
     return this.libellePolFor.valid || this.libellePolFor.untouched;
   }
-  ValidateidAg(){
-    return this.idAg.valid || this.idAg.untouched;
+  ValidateidCompte(){
+    return this.idCompte.valid || this.idCompte.untouched;
   }
 
 }

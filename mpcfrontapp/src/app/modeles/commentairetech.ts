@@ -1,6 +1,6 @@
 export class Commentairetech {
     idCom : number; 	
-    idMessage : number; 	
+    idSujet : number; 	
     reponse : string;	
     daterep : string;
 }

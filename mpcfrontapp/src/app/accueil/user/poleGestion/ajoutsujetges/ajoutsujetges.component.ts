@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Message } from 'src/app/modeles/message.model';
 import { MessageService } from 'src/app/services/message.service';
@@ -13,7 +14,11 @@ export class AjoutsujetgesComponent implements OnInit {
 
   list: Message[];
 
-  constructor(private serviceSujet : MessageService, private toastr : ToastrService, private formBuilder : FormBuilder) {  }
+  constructor(private serviceSujet : MessageService, 
+    private toastr : ToastrService, 
+    private formBuilder : FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router) {  }
 
   data: any;
   
@@ -49,12 +54,16 @@ export class AjoutsujetgesComponent implements OnInit {
   ajoutSujet(obj : any){
     obj.id = 0; 
     this.serviceSujet.postMessage(obj).subscribe((data): any => {
-      this.toastr.success('Agent ajouté avec succes', 'Operation sur l\'agent');
-      // this.serviceSujet.refreshListe().subscribe((data: Message[])=>{
-      //   this.list = data;
-      // })
+    this.toastr.success('Sujet ajouté avec succes', 'Operation sur les sujets');
+      this.serviceSujet.refreshListe().subscribe((data: Message[])=>{
+        this.list = data;
+      })
       this.agentForm.reset();
     })
+  }
+
+  voirCom(msg : Message) : void{
+    this.router.navigate(['ajoutcomad/' + msg.idSujet]);
   }
 
   ValidatesujetMessage(){

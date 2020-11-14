@@ -31,7 +31,6 @@ import { EditermoduleformationComponent } from './accueil/user/moduleformation/e
 import { MessagesComponent } from './accueil/user/messages/messages.component';
 import { NoFundComponent } from './no-fund/no-fund.component';
 import { ModuleformationComponent } from './accueil/user/moduleformation/moduleformation.component';
-import { ListeapprenantmoduleformationComponent } from './accueil/user/moduleformation/listeapprenantmoduleformation/listeapprenantmoduleformation.component';
 import { VoirmoduleformationComponent } from './accueil/user/moduleformation/voirmoduleformation/voirmoduleformation.component';
 import { PoleadminComponent } from './accueil/user/poleAdministratif/poleadmin/poleadmin.component';
 import { AjoutsujetadComponent } from './accueil/user/poleAdministratif/ajoutsujetad/ajoutsujetad.component';
@@ -42,20 +41,19 @@ import { ListesujetgesComponent } from './accueil/user/poleGestion/listesujetges
 import { PoletechComponent } from './accueil/user/poleTechnologique/poletech/poletech.component';
 import { AjoutsujettechComponent } from './accueil/user/poleTechnologique/ajoutsujettech/ajoutsujettech.component';
 import { ListesujettechComponent } from './accueil/user/poleTechnologique/listesujettech/listesujettech.component';
-import { PoleadmincomComponent } from './accueil/user/commentaires/poleadmincom/poleadmincom.component';
 import { AjoutcomadComponent } from './accueil/user/commentaires/ajoutcomad/ajoutcomad.component';
 import { ListecomadComponent } from './accueil/user/commentaires/listecomad/listecomad.component';
-import { PolegescomComponent } from './accueil/user/commentaires/polegescom/polegescom.component';
-import { AjoutcomgesComponent } from './accueil/user/commentaires/ajoutcomges/ajoutcomges.component';
-import { ListecomgesComponent } from './accueil/user/commentaires/listecomges/listecomges.component';
-import { PoletechcomComponent } from './accueil/user/commentaires/poletechcom/poletechcom.component';
-import { AjoutcomtechComponent } from './accueil/user/commentaires/ajoutcomtech/ajoutcomtech.component';
-import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/listecomtech.component';
 import { FormationpoleComponent } from './accueil/admin/formation/formationpole/formationpole.component';
 import { FormationadComponent } from './accueil/admin/formation/formationad/formationad.component';
 import { FormationgesComponent } from './accueil/admin/formation/formationges/formationges.component';
 import { FormationtechComponent } from './accueil/admin/formation/formationtech/formationtech.component';
 import { LoginComponent } from './login/login.component';
+import { ModuleadComponent } from './accueil/user/moduleformation/modulead/modulead.component';
+import { ModulegesComponent } from './accueil/user/moduleformation/moduleges/moduleges.component';
+import { ModuletechComponent } from './accueil/user/moduleformation/moduletech/moduletech.component';
+import { PolegestComponent } from './accueil/user/polegest/polegest.component';
+import { PoletechnoComponent } from './accueil/user/poletechno/poletechno.component';
+import { PoleadminiComponent } from './accueil/user/poleadmini/poleadmini.component';
 
 const routes: Routes = [
   {path:'', component:AccueilComponent, pathMatch:"prefix"},
@@ -88,8 +86,20 @@ const routes: Routes = [
   {path:'ajoutermoduleformation', component:AjoutermoduleformationComponent},
   {path:'listemoduleformation', component:ListemoduleformationComponent},
   {path:'editermoduleformation/:idModule', component:EditermoduleformationComponent},
-  {path:'listeapprenantmoduleformation', component:ListeapprenantmoduleformationComponent},
   {path:'voirmoduleformation/:idModule', component:VoirmoduleformationComponent},
+  {path: 'formationpole', component:FormationpoleComponent},
+  {path: 'formationad', component:FormationadComponent},
+  {path: 'formationges', component:FormationgesComponent},
+  {path: 'formationtech', component:FormationtechComponent},
+  {path: 'login', component:LoginComponent},
+  {path: 'poleadmini', component:PoleadminiComponent},
+  {path: 'polegest', component:PolegestComponent},
+  {path: 'poletechno', component:PoletechnoComponent},
+  {path: 'modulead/:idFormation', component:ModuleadComponent},
+  {path: 'moduleges/:idFormation', component:ModulegesComponent},
+  {path: 'moduletech/:idFormation', component:ModuletechComponent},
+  {path: 'ajoutermoduleformation', component:AjoutermoduleformationComponent},
+  {path: 'listemoduleformation', component:ListemoduleformationComponent},
   {path:'messages', component:MessagesComponent},
   {path:'poleadmin', component:PoleadminComponent},
   {path:'ajoutsujetad', component:AjoutsujetadComponent},
@@ -100,20 +110,8 @@ const routes: Routes = [
   {path:'poletech', component:PoletechComponent},
   {path:'ajoutsujettech', component:AjoutsujettechComponent},
   {path:'listesujettech', component:ListesujettechComponent},
-  {path:'poleadmincom', component:PoleadmincomComponent},
-  {path:'ajoutcomad/:idMessage', component:AjoutcomadComponent},
+  {path:'ajoutcomad/:idSujet', component:AjoutcomadComponent},
   {path:'listecomad', component:ListecomadComponent},
-  {path:'polegescom', component:PolegescomComponent},
-  {path:'ajoutcomges', component:AjoutcomgesComponent},
-  {path:'listecomges', component:ListecomgesComponent},
-  {path:'poletechcom', component:PoletechcomComponent},
-  {path:'ajoutcomtech', component:AjoutcomtechComponent},
-  {path:'listecomtech', component:ListecomtechComponent},
-  {path: 'formationpole', component:FormationpoleComponent},
-  {path: 'formationad', component:FormationadComponent},
-  {path: 'formationges', component:FormationgesComponent},
-  {path: 'formationtech', component:FormationtechComponent},
-  {path: 'login', component:LoginComponent},
   {path:'no-fund', component:NoFundComponent},
   {path:'**', redirectTo :'/no-fund'}
 

@@ -43,6 +43,13 @@ export class ModuleformationService {
     )
   }
 
+  refreshListeG(idFormation): Observable<ModuleFormation[]> {
+    return this.httpClient.get<ModuleFormation[]>(this.apiServer + '/listeModuleTech.php?idFormation=' + idFormation)
+    .pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
   putModule(module): Observable<ModuleFormation> {
     return this.httpClient.put<ModuleFormation>(this.apiServer + '/modifierModule.php' + '?idModule=' + module.idModule, JSON.stringify(module), this.httpOptions)
     .pipe(

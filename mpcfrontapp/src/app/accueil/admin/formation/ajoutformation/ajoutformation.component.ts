@@ -5,8 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Poleformation } from 'src/app/modeles/poleformation.model';
 import { PoleformationService } from 'src/app/services/poleformation.service';
-import { AgentService } from 'src/app/services/agent.service';
-import { Agent } from 'src/app/modeles/agent.model';
+import { Utilisateur } from 'src/app/modeles/utilisateur';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ajoutformation',
@@ -18,14 +19,15 @@ export class AjoutformationComponent implements OnInit {
   
   list: Formation[];
   liste : Poleformation[];
-  lyste : Agent[];
-
+  lyste : Utilisateur[];
   constructor(
     private serviceFormation : FormationService, 
     private toastr : ToastrService, 
     private formBuilder : FormBuilder,
     private servicePole : PoleformationService,
-    private serviceAgent : AgentService) {  }
+    private serviceUtilisateur : UtilisateurService,
+    private route: ActivatedRoute,
+    private router: Router) {  }
 
   data: any;
   
@@ -34,7 +36,6 @@ export class AjoutformationComponent implements OnInit {
     libelleFormation = new FormControl();
     dureeFormation = new FormControl();
     idPolFor = new FormControl();
-    idAg = new FormControl();
 
   ngOnInit(): void {
     this.serviceFormation.refreshListe().subscribe((data: Formation[])=>{
@@ -44,10 +45,6 @@ export class AjoutformationComponent implements OnInit {
     this.servicePole.refreshListe().subscribe((data: Poleformation[])=>{
       this.liste = data;
     })
-
-    this.serviceAgent.refreshListe().subscribe((data:Agent[])=>{
-      this.lyste = data;
-    })
   
 
     // const codeValidation = "^[A][0-9]{4}$";
@@ -56,14 +53,12 @@ export class AjoutformationComponent implements OnInit {
     this.libelleFormation = new FormControl('', [Validators.required]);
     this.dureeFormation = new FormControl('', [Validators.required]);
     this.idPolFor = new FormControl('', [Validators.required]);
-    this.idAg = new FormControl('', [Validators.required]);
 
     this.formationForm = new FormGroup({
       codeFormation : this.codeFormation,
       libelleFormation : this.libelleFormation,
       dureeFormation : this.dureeFormation,
-      idPolFor : this.idPolFor,
-      idAg : this.idAg
+      idPolFor : this.idPolFor
     });
 
   }
@@ -77,6 +72,21 @@ export class AjoutformationComponent implements OnInit {
       })
       this.formationForm.reset();
     })
+  }
+
+  editerFormation(formation : Formation) : void{
+    this.router.navigate(['editerformation/' + formation.idFormation]);
+  }
+
+  supprimerFormation(formation : Formation){
+    if(confirm('Attention ce champs va être supprimé')){
+      this.serviceFormation.deleteFormation(formation.idFormation).subscribe( u => {
+      this.serviceFormation.refreshListe().subscribe((data: Formation[])=>{
+        this.list = data;
+      }) ;
+      this.toastr.warning('Suppression éffectué avec succes', 'Operation sur la formation');
+      });
+    }
   }
 
   ValidatecodeFormation(){
@@ -93,9 +103,6 @@ export class AjoutformationComponent implements OnInit {
 
   ValidateidPolFor(){
     return this.idPolFor.valid || this.idPolFor.untouched;
-  }
-  ValidateidAg(){
-    return this.idAg.valid || this.idAg.untouched;
   }
 
 }

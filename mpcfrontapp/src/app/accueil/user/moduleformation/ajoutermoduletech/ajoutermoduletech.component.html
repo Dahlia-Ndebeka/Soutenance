@@ -1,0 +1,107 @@
+<div class="body">
+    <div class="wrapper">
+        <div class="top_navbar">
+            <div class="hamburger">
+                <img src="../../assets/img/logo1.png" alt="" width="90" height="80">
+            </div>
+
+            <div class="top_menu">
+                <div class="logo">Milane Parker Center</div>
+                <div class="lien">
+                    <ul>
+                        <li routerLinkActive="active"><a routerLink="/user">Accueil</a></li>
+                        <li routerLinkActive="active"><a routerLink="/poletechno">Liste des modules</a></li>
+                        <li routerLinkActive="active"><a routerLink="/messages">Discussion</a></li>
+                        <!-- <li routerLinkActive="active"><a routerLink="/accueil">Connexion/Déconnexion</a></li> -->
+                    </ul>
+                </div>
+                <ul>
+                    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_container col-sm-10 col-sm-offset-2">
+            <div class="row">
+                <div class="item centre col-md-8">
+                    <h2 class="display-7 text-center">Operation sur les modules</h2><br>
+                    <form class="forms-sample" [formGroup]="moduleForm" (submit)="ajoutModule(moduleForm.value)" novalidate autocomplete="off">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="codeModule">Code module :</label>
+                                    <input type="text" name="codeModule" class="form-control" formControlName="codeModule" id="codeModule" placeholder="Code">
+                                    <em *ngIf="!ValidatecodeModule() && moduleForm.controls.codeModule.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatecodeModule() && moduleForm.controls.codeModule.errors.pattern">Code invalide</em>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="dureeModule">Durée du module</label>
+                                    <input type="text" maxlength="10" name="dureeModule" class="form-control" formControlName="dureeModule" id="dureeModule" placeholder="nom utilisateur">
+                                    <em *ngIf="!ValidatedureeModule() && moduleForm.controls.dureeModule.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatedureeModule() && moduleForm.controls.dureeModule.errors.pattern">nom invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="idFormation">Nom de la formation</label>
+                                    <!-- <input type="text" maxlength="255" name="idFormation" class="form-control" formControlName="idFormation" id="idFormation" placeholder="Mot de passe"> -->
+                                    <select name="idFormation" class="form-control" formControlName="idFormation" id="idFormation">
+                                        <option value=""> nom de la formation </option>
+                                        <option *ngFor="let formation of this.liste" value="{{formation.idFormation}}"> {{formation.libelleFormation}} </option>
+                                    </select>
+                                    <em *ngIf="!ValidateidFormation() && moduleForm.controls.idFormation.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateidFormation() && moduleForm.controls.idFormation.errors.pattern">champs invalide</em>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="idCompte">Nom du formateur</label>
+                                    <!-- <input type="text" maxlength="255" name="idFor" class="form-control" formControlName="idFor" id="idFor" placeholder="Confirme le mot de passe"> -->
+                                    <select name="idCompte" class="form-control" formControlName="idCompte" id="idCompte">
+                                                <option value=""> nom du formateur </option>
+                                                <option *ngFor="let for of this.lyste" value="{{for.idCompte}}"> {{for.nomUtilisateur}} </option>
+                                            </select>
+                                    <em *ngIf="!ValidateidCompte() && moduleForm.controls.idFor.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateidCompte() && moduleForm.controls.idFor.errors.mustMatch">champs invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="titreModule">Titre du module</label>
+                                    <input name="titreModule" class="form-control" formControlName="titreModule" id="titreModule" placeholder="Contenu du module" cols="100" rows="8">
+                                    <em *ngIf="!ValidatetitreModule() && moduleForm.controls.titreModule.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatetitreModule() && moduleForm.controls.titreModule.errors.pattern">nom invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="contenuModule">Contenu du module</label>
+                                    <textarea name="contenuModule" class="form-control" formControlName="contenuModule" id="contenuModule" placeholder="Contenu du module" cols="100" rows="8"></textarea>
+                                    <em *ngIf="!ValidatecontenuModule() && moduleForm.controls.contenuModule.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidatecontenuModule() && moduleForm.controls.contenuModule.errors.pattern">nom invalide</em>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-block" [disabled]="moduleForm.invalid">Ajouter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="info">
+                <hr>
+                <p>Centre de Formation Informatique</p>
+                <p>Une idee en action</p>
+            </div>
+        </div>
+    </div>
+</div>

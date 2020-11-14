@@ -37,20 +37,20 @@
                             </div>
                             <!-- <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="idAg">nom de l'agent :</label> 
-                                    <select hidden name="idAg" class="form-control" formControlName="idAg" id="idAg">
+                                    <label for="idCompte">nom de l'agent :</label> 
+                                    <select hidden name="idCompte" class="form-control" formControlName="idCompte" id="idCompte">
                                         <option *ngFor="let pole of this.list" value="1014">{{pole.nomUtilisateur}}</option>
                                     </select>
-                                    <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.required">Attention ce champs est vide</em>
-                                    <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.pattern">Code invalide</em>
+                                    <em *ngIf="!ValidateidCompte() && poleForm.controls.idCompte.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateidCompte() && poleForm.controls.idCompte.errors.pattern">Code invalide</em>
                                 </div>
                             </div> -->
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="idAg">nom de l'agent :</label>
-                                    <input type="text" maxlength="50" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
-                                    <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.required">Attention ce champs est vide</em>
-                                    <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.pattern">Code invalide</em>
+                                    <label for="idCompte">nom de l'agent :</label>
+                                    <input type="text" maxlength="50" name="idCompte" class="form-control" formControlName="idCompte" id="idCompte" placeholder="">
+                                    <em *ngIf="!ValidateidCompte() && poleForm.controls.idCompte.errors.required">Attention ce champs est vide</em>
+                                    <em *ngIf="!ValidateidCompte() && poleForm.controls.idCompte.errors.pattern">Code invalide</em>
                                 </div>
                             </div>
                         </div>

@@ -1,34 +1,61 @@
-<form class="forms-sample" [formGroup]="poleForm" (submit)="ajoutPole(poleForm.value)" novalidate autocomplete="off">
+<div class="main_container col-sm-10 col-sm-offset-2">
     <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="codePolFor">Code :</label>
-                <input type="text" name="codePolFor" class="form-control" formControlName="codePolFor" id="codePolFor" placeholder="Code">
-                <em *ngIf="!ValidatecodePolFor() && poleForm.controls.codePolFor.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatecodePolFor() && poleForm.controls.codePolFor.errors.pattern">Code invalide</em>
-            </div>
+        <div class="item centre col-md-8">
+            <h3 class="display-7 text-center">Enregistrement du pole de formation</h3><br>
+            <form class="forms-sample" [formGroup]="poleForm" (submit)="ajoutPole(poleForm.value)" novalidate autocomplete="off">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="codePolFor">Code :</label>
+                            <input type="text" name="codePolFor" class="form-control" formControlName="codePolFor" id="codePolFor" placeholder="Code">
+                            <em *ngIf="!ValidatecodePolFor() && poleForm.controls.codePolFor.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatecodePolFor() && poleForm.controls.codePolFor.errors.pattern">Code invalide</em>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="libellePolFor">Libellé :</label>
+                            <input type="text" maxlength="50" name="libellePolFor" class="form-control" formControlName="libellePolFor" id="libellePolFor" placeholder="libelle">
+                            <em *ngIf="!ValidatelibellePolFor() && poleForm.controls.libellePolFor.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidatelibellePolFor() && poleForm.controls.libellePolFor.errors.pattern">mot de passe invalide</em>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="idCompte">nom de l'agent :</label>
+                            <select name="idCompte" class="form-control" formControlName="idCompte" id="idCompte">
+                                <option value="">nom agent</option>
+                                <option *ngFor="let agent of this.lyste" value="{{agent.idCompte}}">{{agent.codeAg}} - {{agent.nomUtilisateur}}</option>
+                            </select>
+                            <em *ngIf="!ValidateidCompte() && poleForm.controls.idCompte.errors.required">Attention ce champs est vide</em>
+                            <em *ngIf="!ValidateidCompte() && poleForm.controls.idCompte.errors.pattern">Code invalide</em>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-lg btn-block" [disabled]="poleForm.invalid">Ajouter</button>
+            </form>
+        </div>
+        <div class="item centre2 col-md-12">
+            <h3 class="display-8">Liste des pôles des formations</h3>
+            <table class="table table-striped">
+                <tr class="bg-info text-white">
+                    <th>Code pôle de formation</th>
+                    <th>Libelle pôle de formation</th>
+                    <!-- <th>Nom de l'agent</th> -->
+                    <th class="text-center">Opération</th>
+                </tr>
+                <tr *ngFor="let pole of this.list">
+                    <td>{{pole.codePolFor}}</td>
+                    <td>{{pole.libellePolFor}}</td>
+                    <!-- <td>{{pole.idAg}</td> -->
+                    <td class="text-center">
+                        <a href="javascript:void(0);" (click)="editerPole(pole)" class="btn btn-sm btn-outline-warning">Editer</a> /
+                        <a href="javascript:void(0);" (click)="supprimerPole(pole)" class="btn btn-sm btn-outline-danger">Supprimer</a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="libellePolFor">Libellé :</label>
-                <input type="text" maxlength="50" name="libellePolFor" class="form-control" formControlName="libellePolFor" id="libellePolFor" placeholder="libelle">
-                <em *ngIf="!ValidatelibellePolFor() && poleForm.controls.libellePolFor.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidatelibellePolFor() && poleForm.controls.libellePolFor.errors.pattern">mot de passe invalide</em>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="idAg">nom de l'agent :</label>
-                <select name="idAg" class="form-control" formControlName="idAg" id="idAg">
-                    <option value="">nom agent</option>
-                    <option *ngFor="let agent of this.lyste" value="{{agent.idAg}}">{{agent.codeAg}} - {{agent.nomUtilisateur}}</option>
-                </select>
-                <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.required">Attention ce champs est vide</em>
-                <em *ngIf="!ValidateidAg() && poleForm.controls.idAg.errors.pattern">Code invalide</em>
-            </div>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-lg btn-block" [disabled]="poleForm.invalid">Ajouter</button>
-</form>
+</div>

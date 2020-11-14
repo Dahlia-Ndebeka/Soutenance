@@ -22,11 +22,8 @@ import { AjoutformateurComponent } from './accueil/admin/formateur/ajoutformateu
 import { ListeformateurComponent } from './accueil/admin/formateur/listeformateur/listeformateur.component';
 import { AjoutapprenantComponent } from './accueil/admin/apprenant/ajoutapprenant/ajoutapprenant.component';
 import { ListeapprenantComponent } from './accueil/admin/apprenant/listeapprenant/listeapprenant.component';
-import { AgentService } from './services/agent.service';
 import { PoleformationService } from './services/poleformation.service';
 import { FormationService } from './services/formation.service';
-import { FormateurService } from './services/formateur.service';
-import { ApprenantService } from './services/apprenant.service';
 import { ModuleformationService } from './services/moduleformation.service';
 import { MessageService } from './services/message.service';
 import { ToastrModule } from 'ngx-toastr';
@@ -48,7 +45,6 @@ import { ModuleformationComponent } from './accueil/user/moduleformation/modulef
 import { ListemoduleformationComponent } from './accueil/user/moduleformation/listemoduleformation/listemoduleformation.component';
 import { EditermoduleformationComponent } from './accueil/user/moduleformation/editermoduleformation/editermoduleformation.component';
 import { MessagesComponent } from './accueil/user/messages/messages.component';
-import { ListeapprenantmoduleformationComponent } from './accueil/user/moduleformation/listeapprenantmoduleformation/listeapprenantmoduleformation.component';
 import { VoirmoduleformationComponent } from './accueil/user/moduleformation/voirmoduleformation/voirmoduleformation.component';
 import { NgxSimplePrintModule } from 'ngx-simple-print';
 import { AjoutsujetadComponent } from './accueil/user/poleAdministratif/ajoutsujetad/ajoutsujetad.component';
@@ -60,15 +56,8 @@ import { PolegesComponent } from './accueil/user/poleGestion/poleges/poleges.com
 import { PoletechComponent } from './accueil/user/poleTechnologique/poletech/poletech.component';
 import { AjoutsujettechComponent } from './accueil/user/poleTechnologique/ajoutsujettech/ajoutsujettech.component';
 import { ListesujettechComponent } from './accueil/user/poleTechnologique/listesujettech/listesujettech.component';
-import { PoleadmincomComponent } from './accueil/user/commentaires/poleadmincom/poleadmincom.component';
 import { AjoutcomadComponent } from './accueil/user/commentaires/ajoutcomad/ajoutcomad.component';
 import { ListecomadComponent } from './accueil/user/commentaires/listecomad/listecomad.component';
-import { ListecomgesComponent } from './accueil/user/commentaires/listecomges/listecomges.component';
-import { AjoutcomgesComponent } from './accueil/user/commentaires/ajoutcomges/ajoutcomges.component';
-import { PolegescomComponent } from './accueil/user/commentaires/polegescom/polegescom.component';
-import { PoletechcomComponent } from './accueil/user/commentaires/poletechcom/poletechcom.component';
-import { AjoutcomtechComponent } from './accueil/user/commentaires/ajoutcomtech/ajoutcomtech.component';
-import { ListecomtechComponent } from './accueil/user/commentaires/listecomtech/listecomtech.component';
 import { ModuleadComponent } from './accueil/user/moduleformation/modulead/modulead.component';
 import { ModulegesComponent } from './accueil/user/moduleformation/moduleges/moduleges.component';
 import { ModuletechComponent } from './accueil/user/moduleformation/moduletech/moduletech.component';
@@ -78,6 +67,11 @@ import { FormationtechComponent } from './accueil/admin/formation/formationtech/
 import { FormationpoleComponent } from './accueil/admin/formation/formationpole/formationpole.component';
 import { LoginComponent } from './login/login.component';
 import { UtilisateurService } from './services/utilisateur.service';
+import { PolegestComponent } from './accueil/user/polegest/polegest.component';
+import { PoletechnoComponent } from './accueil/user/poletechno/poletechno.component';
+import { PoleadminiComponent } from './accueil/user/poleadmini/poleadmini.component';
+import { AjoutermodulegesComponent } from './accueil/user/moduleformation/ajoutermoduleges/ajoutermoduleges.component';
+import { AjoutermoduletechComponent } from './accueil/user/moduleformation/ajoutermoduletech/ajoutermoduletech.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +110,6 @@ import { UtilisateurService } from './services/utilisateur.service';
     EditermoduleformationComponent,
     AjoutermoduleformationComponent,
     MessagesComponent,
-    ListeapprenantmoduleformationComponent,
     VoirmoduleformationComponent,
     AjoutsujetadComponent,
     PoleadminComponent,
@@ -127,15 +120,8 @@ import { UtilisateurService } from './services/utilisateur.service';
     PoletechComponent,
     AjoutsujettechComponent,
     ListesujettechComponent,
-    PoleadmincomComponent,
     AjoutcomadComponent,
     ListecomadComponent,
-    ListecomgesComponent,
-    AjoutcomgesComponent,
-    PolegescomComponent,
-    PoletechcomComponent,
-    AjoutcomtechComponent,
-    ListecomtechComponent,
     ModuleadComponent,
     ModulegesComponent,
     ModuletechComponent,
@@ -143,7 +129,12 @@ import { UtilisateurService } from './services/utilisateur.service';
     FormationgesComponent,
     FormationtechComponent,
     FormationpoleComponent,
-    LoginComponent
+    LoginComponent,
+    PolegestComponent,
+    PoletechnoComponent,
+    PoleadminiComponent,
+    AjoutermodulegesComponent,
+    AjoutermoduletechComponent
   ],
   imports: [
     BrowserModule,
@@ -157,11 +148,8 @@ import { UtilisateurService } from './services/utilisateur.service';
 
   ],
   providers: [
-    AgentService,
     PoleformationService,
     FormationService,
-    FormateurService,
-    ApprenantService,
     ModuleformationService,
     MessageService,
     UtilisateurService

@@ -56,14 +56,6 @@
                                     <em *ngIf="!ValidateidPolFor() && formationForm.controls.idPolFor.errors.pattern">libellé invalide</em>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="idAg">nom de l'agent :</label>
-                                    <input type="text" maxlength="50" name="idAg" class="form-control" formControlName="idAg" id="idAg" placeholder="">
-                                    <em *ngIf="!ValidateidAg() && formationForm.controls.idAg.errors.required">Attention ce champs est vide</em>
-                                    <em *ngIf="!ValidateidAg() && formationForm.controls.idAg.errors.pattern">nom invalide</em>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-3">

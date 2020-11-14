@@ -9,10 +9,19 @@
                 <div class="lien">
                     <ul>
                         <li routerLinkActive="active"><a routerLink="/user">Accueil</a></li>
-                        <li routerLinkActive="active"><a routerLink="/listeapprenantmoduleformation">Liste des modules</a></li>
                         <li routerLinkActive="active"><a routerLink="/poleadmin">Pôle Administratif</a></li>
                         <li routerLinkActive="active"><a routerLink="/poleges">Pôle de Gestion</a></li>
                         <li routerLinkActive="active"><a routerLink="/poletech">Pôle Technologique</a></li>
+                        <div>
+                            <li routerLinkActive="active">
+                                <a href="javascript:void(0);" (click)="deconnexion()">
+                                    <span class="icon">
+                                            <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
+                                        </span>
+                                    <span class="title">Déconnexion</span>
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
                 <ul>
@@ -22,18 +31,20 @@
                 </ul>
             </div>
         </div>
-        <div class="main_container col-sm-10 col-sm-offset-2">
+        <div>
+            <app-ajoutsujetad></app-ajoutsujetad>
+        </div>
+        <!-- <div class="main_container col-sm-10 col-sm-offset-2">
             <div class="row center">
                 <div class="item centre2 col-md-12">
                     <h3 class="display-6">Ajouter un nouveau sujet</h3>
-                    <app-ajoutsujetad></app-ajoutsujetad>
                 </div>
                 <div class="item centre2 col-md-12">
                     <h3 class="display-8">Liste des sujets</h3>
                     <app-listesujetad></app-listesujetad>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div>
             <hr>
             <div class="info">

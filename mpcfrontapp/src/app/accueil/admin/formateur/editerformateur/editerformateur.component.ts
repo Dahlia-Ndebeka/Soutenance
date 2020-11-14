@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Formateur } from 'src/app/modeles/formateur.model';
-import { FormateurService } from 'src/app/services/formateur.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
 @Component({
   selector: 'app-editerformateur',
@@ -12,75 +11,50 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditerformateurComponent implements OnInit {
 
-  list: Formateur[];
+  agentForm : FormGroup;
+  idCompte = new FormControl();
+  codeCompte = new FormControl();
+  nomUtilisateur = new FormControl();
+  motDePasse = new FormControl();
+  confMotDePasse = new FormControl();
+  roleUtilisateur = new FormControl();
 
-  constructor(private serviceFormateur : FormateurService, private toastr : ToastrService, private formBuilder : FormBuilder,
-    private routes : ActivatedRoute, private router : Router) {  }
-
-  data: any;
-  
-  //   formateurForm = new FormGroup({
-  //     codeFor : new FormControl,
-  //     nomFor : new FormControl,
-  //     motDePasseFor : new FormControl,
-  //     confMotDePasseFor : new FormControl,
-  //     idAg : new FormControl,
-  //   })
-
-    formateurForm : FormGroup;
-    idFor = new FormControl();
-    codeFor = new FormControl();
-    nomFor = new FormControl();
-    motDePasseFor = new FormControl();
-    confMotDePasseFor = new FormControl();
-    idAg = new FormControl();
+  constructor(private formBuilder : FormBuilder, private routes : ActivatedRoute, private serviceFormateur : UtilisateurService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
 
-    this.serviceFormateur.refreshListe().subscribe((data: Formateur[])=>{
-      this.list = data;
-    })
-
-    // this.formateurForm = this.formBuilder.group({
-    //     codeFor : new FormControl('', [Validators.required]),
-    //     nomFor : new FormControl('', [Validators.required]),
-    //     motDePasseFor : new FormControl('', [Validators.required]),
-    //     confMotDePasseFor : new FormControl('', [Validators.required]),
-    //     idAg : new FormControl('', [Validators.required]),
-    // });
-
     // const codeValidation = "^[A][0-9]{4}$";
     // this.codeAg = new FormControl('', [Validators.required, Validators.pattern(codeValidation)]);
-    this.idFor = new FormControl('', [Validators.required]);
-    this.codeFor = new FormControl('', [Validators.required]);
-    this.nomFor = new FormControl('', [Validators.required]);
-    this.motDePasseFor = new FormControl('', [Validators.required]);
-    this.confMotDePasseFor = new FormControl('', [Validators.required]);
-    this.idAg = new FormControl('', [Validators.required]);
+    this.idCompte = new FormControl('', [Validators.required]);
+    this.codeCompte = new FormControl('', [Validators.required]);
+    this.nomUtilisateur = new FormControl('', [Validators.required]);
+    this.motDePasse = new FormControl('', [Validators.required]);
+    this.confMotDePasse = new FormControl('', [Validators.required]);
+    this.roleUtilisateur = new FormControl('', [Validators.required]);
 
-    this.formateurForm = new FormGroup({
-      idFor : this.idFor,
-      codeFor : this.codeFor,
-      nomFor : this.nomFor,
-      motDePasseFor : this.motDePasseFor,
-      confMotDePasseFor : this.confMotDePasseFor,
-      idAg : this.idAg,
+    this.agentForm = new FormGroup({
+        idCompte  : this.idCompte ,
+        codeCompte : this.codeCompte,
+        nomUtilisateur : this.nomUtilisateur,
+        motDePasse : this.motDePasse,
+        confMotDePasse : this.confMotDePasse,
+        roleUtilisateur : this.roleUtilisateur
     });
 
     const routeParams = this.routes.snapshot.params;
-    console.log(routeParams.idFor);
+    console.log(routeParams.idCompte);
 
-    this.serviceFormateur.getFormateur(routeParams.idFor).subscribe((data : any) =>{
-      this.formateurForm.patchValue(data);
+    this.serviceFormateur.getUtilisateur(routeParams.idCompte).subscribe((data : any) =>{
+      this.agentForm.patchValue(data);
     })
 
   }
 
   modifierFormateur(){ 
-    this.serviceFormateur.putFormateur(this.formateurForm.value)
+    this.serviceFormateur.putUtilisateur(this.agentForm.value)
     .subscribe(data =>{
-      this.toastr.success('Formateur modifier avec succes', 'Operation sur le formateur');
-        this.formateurForm.reset();
+        this.toastr.info('Modification effectué avec succes', 'Operation sur formateur');
+        this.agentForm.reset();
         this.router.navigate(['formateur']);
     },error =>{
         alert(error);
@@ -88,29 +62,28 @@ export class EditerformateurComponent implements OnInit {
     );
   }
 
-  annulerFormateur(){
-    this.formateurForm.reset();
+  annulerAgent(){
+    this.agentForm.reset();
     this.router.navigate(['formateur']);
   }
 
-  ValidatecodeFor(){
-    return this.codeFor.valid || this.codeFor.untouched;
+  ValidatecodeCompte(){
+    return this.codeCompte.valid || this.codeCompte.untouched;
   }
 
-  ValidatenomFor(){
-    return this.nomFor.valid || this.nomFor.untouched;
+  ValidatenomUtilisateur(){
+    return this.nomUtilisateur.valid || this.nomUtilisateur.untouched;
   }
 
-  ValidatemotDePasseFor(){
-    return this.motDePasseFor.valid || this.motDePasseFor.untouched;
+  ValidatemotDePasse(){
+    return this.motDePasse.valid || this.motDePasse.untouched;
   }
 
-  ValidateconfMotDePasseFor(){
-    return this.confMotDePasseFor.valid || this.confMotDePasseFor.untouched;
+  ValidateconfMotDePasse(){
+    return this.confMotDePasse.valid || this.confMotDePasse.untouched;
   }
-
-  ValidateidAg(){
-    return this.idAg.valid || this.idAg.untouched;
+  ValidateroleUtilisateur(){
+    return this.roleUtilisateur.valid || this.roleUtilisateur.untouched;
   }
 
 }

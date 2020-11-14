@@ -8,9 +8,9 @@
             <form [formGroup]="authForm" (submit)="auth(authForm.value)" autocomplete="off">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="text" name="codeCompte" class="form-control" formControlName="codeCompte" id="codeCompte" placeholder="nom utilisateur" autocomplete="off">
-                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.required">Attention ce champs est vide</em>
-                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.pattern">nom invalide</em>
+                        <input type="text" name="nomUtilisateur" class="form-control" formControlName="nomUtilisateur" id="nomUtilisateur" placeholder="nom utilisateur" autocomplete="off">
+                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.pattern">nom invalide</em>
                     </div>
                 </div>
                 <div class="form-group">
@@ -70,9 +70,9 @@
             <form [formGroup]="authForm" (submit)="auth(authForm.value)" autocomplete="off">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="text" name="codeCompte" class="form-control" formControlName="codeCompte" id="codeCompte" placeholder="nom utilisateur">
-                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.required">Attention ce champs est vide</em>
-                        <em *ngIf="!ValidatecodeCompte() && authForm.controls.codeCompte.errors.pattern">nom invalide</em>
+                        <input type="text" name="nomUtilisateur" class="form-control" formControlName="nomUtilisateur" id="nomUtilisateur" placeholder="nom utilisateur">
+                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.required">Attention ce champs est vide</em>
+                        <em *ngIf="!ValidatenomUtilisateur() && authForm.controls.nomUtilisateur.errors.pattern">nom invalide</em>
                     </div>
                 </div>
                 <div class="form-group">

@@ -22,20 +22,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authForm = this.fb.group({
-      codeCompte: ['', Validators.required],
+      nomUtilisateur: ['', Validators.required],
       motDePasse: ['', Validators.required]
     });
   }
 
   auth(authForm){
     const loginData = {
-      codeCompte: this.authForm.controls.codeCompte.value,
+      nomUtilisateur: this.authForm.controls.nomUtilisateur.value,
       motDePasse: this.authForm.controls.motDePasse.value
     };
     
     this.authService.login(loginData).subscribe((data : any) =>{
       // this.message = data.message;
-
       if (data.token) {
         window.localStorage.setItem('token', data.token);
         this.toastr.success(data.message);
@@ -51,6 +50,7 @@ export class LoginComponent implements OnInit {
       }else{
         // this.invalidLogin = true;
         this.toastr.info(data.message);
+        this.authForm.reset();
         // alert(data.message)
       }
 
@@ -58,12 +58,12 @@ export class LoginComponent implements OnInit {
 
   }
 
-  get codeCompte() { return this.authForm.get('codeCompte'); }
+  get nomUtilisateur() { return this.authForm.get('nomUtilisateur'); }
   get motDePasse() { return this.authForm.get('motDePasse'); }
 
 
-  ValidatecodeCompte(){
-    return this.codeCompte.valid || this.codeCompte.untouched;
+  ValidatenomUtilisateur(){
+    return this.nomUtilisateur.valid || this.nomUtilisateur.untouched;
   }
 
   ValidatemotDePasse(){
@@ -101,13 +101,13 @@ export class LoginComponent implements OnInit {
 
 
 // authForm : FormGroup;
-//   // codeCompte = new FormControl();
+//   // nomUtilisateur = new FormControl();
 //   // motDePasse = new FormControl();
 
 //   constructor(private fb: FormBuilder, private toastr : ToastrService, private dataService : AuthService, private router : Router) { 
 
 //     this.authForm = this.fb.group({
-//       codeCompte: ['', Validators.required],
+//       nomUtilisateur: ['', Validators.required],
 //       motDePasse: ['', Validators.required]
 //     });
 //   }    
@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
 //   }
 
 //   auth(authForm){
-//     this.dataService.userlogin(authForm.value.codeCompte,authForm.value.motDePasse).pipe(first()).subscribe(
+//     this.dataService.userlogin(authForm.value.nomUtilisateur,authForm.value.motDePasse).pipe(first()).subscribe(
 //     data => {
 //       // const redirect = this.dataService.redirectUrl ? this.dataService.redirectUrl : '/dashboard';
 //       // this.router.navigate([redirect]);
@@ -126,12 +126,12 @@ export class LoginComponent implements OnInit {
 //     });
 //   }
 
-//   get codeCompte() { return this.authForm.get('codeCompte'); }
+//   get nomUtilisateur() { return this.authForm.get('nomUtilisateur'); }
 //   get motDePasse() { return this.authForm.get('motDePasse'); }
 
 
-//   ValidatecodeCompte(){
-//     return this.codeCompte.valid || this.codeCompte.untouched;
+//   ValidatenomUtilisateur(){
+//     return this.nomUtilisateur.valid || this.nomUtilisateur.untouched;
 //   }
 
 //   ValidatemotDePasse(){

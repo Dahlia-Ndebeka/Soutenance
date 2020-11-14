@@ -10,7 +10,6 @@
             <div class="top_menu">
                 <div class="logo">Milane Parker Center</div>
                 <ul>
-                    <!-- <li routerLinkActive="active"><a routerLink="/formationpole" class="active">Liste des formations par pôle</a></li> -->
                     <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
@@ -67,14 +66,6 @@
                         <span class="title">Formation</span>
                     </a>
                 </li>
-                <!-- <li routerLinkActive="active">
-                    <a routerLink="/moduleformation">
-                        <span class="icon">
-                                <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
-                            </span>
-                        <span class="title">Module formation</span>
-                    </a>
-                </li> -->
                 <li routerLinkActive="active">
                     <a routerLink="/message">
                         <span class="icon">
@@ -83,6 +74,16 @@
                         <span class="title">Message</span>
                     </a>
                 </li>
+                <div>
+                    <li routerLinkActive="active">
+                        <a href="javascript:void(0);" (click)="deconnexion()">
+                            <span class="icon">
+                                    <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
+                                </span>
+                            <span class="title">Déconnexion</span>
+                        </a>
+                    </li>
+                </div>
             </ul>
         </div>
         <div class="main_container col-sm-10 col-sm-offset-2">

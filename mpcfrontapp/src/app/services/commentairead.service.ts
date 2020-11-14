@@ -32,19 +32,26 @@ export class CommentaireadService {
     )
   }
 
-  refreshListe(): Observable<Commentairead[]> {
-    return this.httpClient.get<Commentairead[]>(this.apiServer + '/listecomAd.php')
+  refreshListe(idComAdmin): Observable<Commentairead[]> {
+    return this.httpClient.get<Commentairead[]>(this.apiServer + '/editercomAd.php?idComAdmin=' + idComAdmin)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
-  refreshListeCom(): Observable<Commentairead[]> {
-    return this.httpClient.get<Commentairead[]>(this.apiServer + '/listecomAd.php')
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
+  // refreshListe(idSujet): Observable<Commentairead> {
+  //   return this.httpClient.get<Commentairead>(this.apiServer + '/listecomAd.php?idSujet=' + idSujet)
+  //   .pipe(
+  //     catchError(this.errorHandler)
+  //   )
+  // }
+
+  // refreshListeCom(): Observable<Commentairead[]> {
+  //   return this.httpClient.get<Commentairead[]>(this.apiServer + '/listecomAd.php')
+  //   .pipe(
+  //     catchError(this.errorHandler)
+  //   )
+  // }
 
   putMessage(com): Observable<Commentairead> {
     return this.httpClient.put<Commentairead>(this.apiServer + '/modifiercomAd.php' + '?idComAdmin=' + com.idComAdmin, JSON.stringify(com), this.httpOptions)
